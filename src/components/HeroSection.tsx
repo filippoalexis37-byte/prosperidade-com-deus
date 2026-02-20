@@ -30,12 +30,16 @@ const HeroSection = () => {
           não repetir os erros que atrasam sua prosperidade.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Button variant="hero" size="lg" className="text-lg px-10 py-6">
-            Quero Começar Agora
-          </Button>
-          <Button variant="heroOutline" size="lg" className="text-lg px-10 py-6">
-            Saiba Mais
-          </Button>
+          <a href="https://www.ggcheckout.com/checkout/v3/9Mi4R0FainnLnX9wzmRn" target="_blank" rel="noopener noreferrer">
+            <Button variant="hero" size="lg" className="text-lg px-10 py-6">
+              Quero Começar Agora
+            </Button>
+          </a>
+          <a href="https://www.ggcheckout.com/checkout/v3/9Mi4R0FainnLnX9wzmRn" target="_blank" rel="noopener noreferrer">
+            <Button variant="heroOutline" size="lg" className="text-lg px-10 py-6">
+              Saiba Mais
+            </Button>
+          </a>
         </div>
       </div>
 
