@@ -23,9 +23,11 @@ const CTASection = () => {
           vos serão acrescentadas." — Mateus 6:33
         </blockquote>
 
-        <Button variant="hero" size="lg" className="text-lg px-12 py-7">
-          Quero Transformar Minha Vida
-        </Button>
+        <a href="https://www.ggcheckout.com/checkout/v3/9Mi4R0FainnLnX9wzmRn" target="_blank" rel="noopener noreferrer">
+          <Button variant="hero" size="lg" className="text-lg px-12 py-7">
+            Quero Transformar Minha Vida
+          </Button>
+        </a>
       </div>
     </section>
   );
