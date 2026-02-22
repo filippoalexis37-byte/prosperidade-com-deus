@@ -1,32 +1,40 @@
-import { BookOpen, Flame, Heart } from "lucide-react";
+import { Sparkles, HandHeart, Flame, Gem, Bird } from "lucide-react";
 
 const modules = [
   {
+    icon: Sparkles,
+    emoji: "✨",
+    title: "365 Devocionais Transformadores",
+    description:
+      "Uma palavra diária para fortalecer sua fé, renovar sua mente e alinhar sua vida com Deus.",
+  },
+  {
+    icon: HandHeart,
+    emoji: "🙏",
+    title: "Meditações Baseadas nos Apóstolos",
+    description:
+      "Aprenda com os ensinamentos dos apóstolos e aplique princípios bíblicos no seu dia a dia.",
+  },
+  {
     icon: Flame,
-    number: "01",
-    title: "Confronto",
-    subtitle: "Identificando os erros que travam sua prosperidade",
+    emoji: "🔥",
+    title: "Direção Para Vencer o Deserto Espiritual",
     description:
-      "Faça um raio-x espiritual, identifique ídolos modernos e quebre padrões repetitivos que impedem seu crescimento.",
-    steps: ["Raio-X Espiritual", "Ídolos Modernos", "Quebrando Padrões"],
+      "Se você está passando por momentos difíceis, encontrará orientação para permanecer firme na presença de Deus.",
   },
   {
-    icon: BookOpen,
-    number: "02",
-    title: "Processo",
-    subtitle: "Entendendo o deserto e não reagindo como o mundo",
+    icon: Gem,
+    emoji: "💎",
+    title: "Prosperidade Alinhada ao Reino",
     description:
-      "Aprenda que o deserto não é castigo — é preparação. Troque fuga por disciplina e siga a Regra dos 30 Dias.",
-    steps: ["Entenda o Deserto", "Regra dos 30 Dias", "Disciplina sobre Fuga"],
+      "Entenda como viver uma vida próspera espiritualmente, emocionalmente e financeiramente com Deus no centro.",
   },
   {
-    icon: Heart,
-    number: "03",
-    title: "Reconstrução",
-    subtitle: "Colocando Deus no centro e plano de 30 dias",
+    icon: Bird,
+    emoji: "🕊",
+    title: "Disciplina Espiritual Diária",
     description:
-      "Crie uma rotina diária com Deus, reconstrua sua identidade e planeje sua vida financeira e emocional.",
-    steps: ["Rotina com Deus", "Nova Identidade", "Reconstrução Total"],
+      "Crie o hábito de buscar a Deus todos os dias com conteúdo organizado e fácil de aplicar.",
   },
 ];
 
@@ -36,47 +44,35 @@ const ModulesSection = () => {
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-20">
           <p className="text-gold font-sans text-sm tracking-[0.3em] uppercase mb-4">
-            Conteúdo do Curso
+            O Que Você Vai Receber
           </p>
           <h2 className="font-serif text-4xl md:text-5xl font-bold text-foreground mb-6">
-            3 Módulos de <span className="text-gradient-gold">Transformação</span>
+            Dentro do <span className="text-gradient-gold">Prosperidade com Deus</span>
           </h2>
           <p className="text-muted-foreground text-lg max-w-xl mx-auto">
-            Um caminho prático e profundo para restaurar sua vida.
+            Tudo que você precisa para transformar sua vida espiritual, emocional e financeira.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8">
-          {modules.map((mod) => (
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {modules.map((mod, i) => (
             <div
-              key={mod.number}
+              key={i}
               className="group relative bg-card rounded-2xl p-8 border border-border hover:border-gold/30 transition-all duration-500 hover:glow-gold"
             >
-              <div className="flex items-center gap-4 mb-6">
+              <div className="flex items-center gap-4 mb-5">
                 <div className="w-12 h-12 rounded-xl bg-gradient-gold flex items-center justify-center">
                   <mod.icon className="w-6 h-6 text-primary-foreground" />
                 </div>
-                <span className="text-gold/40 font-serif text-3xl font-bold">
-                  {mod.number}
-                </span>
+                <span className="text-2xl">{mod.emoji}</span>
               </div>
 
-              <h3 className="font-serif text-2xl font-bold text-foreground mb-2">
+              <h3 className="font-serif text-xl font-bold text-foreground mb-3">
                 {mod.title}
               </h3>
-              <p className="text-gold-light text-sm mb-4">{mod.subtitle}</p>
-              <p className="text-muted-foreground text-sm leading-relaxed mb-6">
+              <p className="text-muted-foreground text-sm leading-relaxed">
                 {mod.description}
               </p>
-
-              <div className="space-y-2">
-                {mod.steps.map((step, i) => (
-                  <div key={i} className="flex items-center gap-3 text-sm">
-                    <div className="w-1.5 h-1.5 rounded-full bg-gradient-gold" />
-                    <span className="text-secondary-foreground">{step}</span>
-                  </div>
-                ))}
-              </div>
             </div>
           ))}
         </div>
