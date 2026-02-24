@@ -5,10 +5,12 @@ import PromoSection from "@/components/PromoSection";
 import PlanSection from "@/components/PlanSection";
 import CTASection from "@/components/CTASection";
 import Footer from "@/components/Footer";
+import ExitIntentPopup from "@/components/ExitIntentPopup";
 
 const Index = () => {
   return (
     <div className="min-h-screen bg-background">
+      <ExitIntentPopup />
       <HeroSection />
       <ModulesSection />
       <AppDemoSection />
