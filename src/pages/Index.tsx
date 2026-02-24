@@ -4,6 +4,8 @@ import AppDemoSection from "@/components/AppDemoSection";
 import PromoSection from "@/components/PromoSection";
 import PlanSection from "@/components/PlanSection";
 import CTASection from "@/components/CTASection";
+import TestimonialsSection from "@/components/TestimonialsSection";
+import FAQSection from "@/components/FAQSection";
 import Footer from "@/components/Footer";
 import ExitIntentPopup from "@/components/ExitIntentPopup";
 
@@ -16,6 +18,8 @@ const Index = () => {
       <AppDemoSection />
       <PromoSection />
       <PlanSection />
+      <TestimonialsSection />
+      <FAQSection />
       <CTASection />
       <Footer />
     </div>
