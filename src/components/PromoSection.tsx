@@ -81,7 +81,7 @@ const PromoSection = () => {
               R$ 14,90
             </span>
           </div>
-          <p className="text-muted-foreground text-sm mb-8">pagamento único • acesso vitalício</p>
+          <div className="mb-8" />
 
           {/* Coupon */}
           <div className="bg-secondary/60 border border-dashed border-gold/30 rounded-xl p-4 mb-8 max-w-xs mx-auto">
