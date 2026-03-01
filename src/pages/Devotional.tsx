@@ -5,6 +5,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Heart, RefreshCw } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import UpgradeGate from "@/components/UpgradeGate";
+import TrialBanner from "@/components/TrialBanner";
 
 const apostles = [
   "Paulo", "Pedro", "João", "Tiago", "André", "Filipe", "Bartolomeu",
@@ -51,7 +53,9 @@ const Devotional = () => {
 
   return (
     <AppLayout>
+      <UpgradeGate>
       <div className="space-y-6">
+        <TrialBanner />
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
             <Heart className="w-6 h-6 text-red-400" />
@@ -139,6 +143,7 @@ const Devotional = () => {
           </Card>
         )}
       </div>
+      </UpgradeGate>
     </AppLayout>
   );
 };

@@ -8,6 +8,8 @@ import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { Compass, CheckCircle2, Lock } from "lucide-react";
 import { toast } from "sonner";
+import UpgradeGate from "@/components/UpgradeGate";
+import TrialBanner from "@/components/TrialBanner";
 
 const courseWeeks = [
   {
@@ -148,7 +150,9 @@ const Modules = () => {
 
   return (
     <AppLayout>
+      <UpgradeGate>
       <div className="space-y-6">
+        <TrialBanner />
         <div className="flex items-center gap-3">
           <Compass className="w-6 h-6 text-blue-400" />
           <h1 className="font-serif text-2xl font-bold text-foreground">Módulos do Curso</h1>
@@ -214,6 +218,7 @@ const Modules = () => {
           })}
         </div>
       </div>
+      </UpgradeGate>
     </AppLayout>
   );
 };

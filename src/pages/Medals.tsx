@@ -4,6 +4,8 @@ import { supabase } from "@/integrations/supabase/client";
 import AppLayout from "@/components/AppLayout";
 import { Card, CardContent } from "@/components/ui/card";
 import { Award } from "lucide-react";
+import UpgradeGate from "@/components/UpgradeGate";
+import TrialBanner from "@/components/TrialBanner";
 
 interface Medal {
   id: string;
@@ -44,7 +46,9 @@ const Medals = () => {
 
   return (
     <AppLayout>
+      <UpgradeGate>
       <div className="space-y-6">
+        <TrialBanner />
         <div className="flex items-center gap-3">
           <Award className="w-6 h-6 text-gold" />
           <h1 className="font-serif text-2xl font-bold text-foreground">Minhas Medalhas</h1>
@@ -84,6 +88,7 @@ const Medals = () => {
           ))}
         </div>
       </div>
+      </UpgradeGate>
     </AppLayout>
   );
 };

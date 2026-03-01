@@ -4,6 +4,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { BookOpen, Search } from "lucide-react";
+import UpgradeGate from "@/components/UpgradeGate";
+import TrialBanner from "@/components/TrialBanner";
 
 const bibleBooks = [
   { name: "Gênesis", chapters: 50 }, { name: "Êxodo", chapters: 40 }, { name: "Levítico", chapters: 27 },
@@ -65,7 +67,9 @@ const Bible = () => {
 
   return (
     <AppLayout>
+      <UpgradeGate>
       <div className="space-y-6">
+        <TrialBanner />
         <div className="flex items-center gap-3">
           <BookOpen className="w-6 h-6 text-gold" />
           <h1 className="font-serif text-2xl font-bold text-foreground">Bíblia Sagrada</h1>
@@ -139,6 +143,7 @@ const Bible = () => {
           </>
         )}
       </div>
+      </UpgradeGate>
     </AppLayout>
   );
 };
