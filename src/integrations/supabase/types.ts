@@ -82,8 +82,10 @@ export type Database = {
           created_at: string
           email: string
           full_name: string
+          has_paid: boolean
           id: string
           is_approved: boolean
+          trial_started_at: string
           updated_at: string
           user_id: string
         }
@@ -91,8 +93,10 @@ export type Database = {
           created_at?: string
           email?: string
           full_name?: string
+          has_paid?: boolean
           id?: string
           is_approved?: boolean
+          trial_started_at?: string
           updated_at?: string
           user_id: string
         }
@@ -100,8 +104,10 @@ export type Database = {
           created_at?: string
           email?: string
           full_name?: string
+          has_paid?: boolean
           id?: string
           is_approved?: boolean
+          trial_started_at?: string
           updated_at?: string
           user_id?: string
         }
@@ -186,6 +192,7 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      get_subscription_status: { Args: { _user_id: string }; Returns: string }
       has_role: {
         Args: {
           _role: Database["public"]["Enums"]["app_role"]

@@ -8,6 +8,7 @@ import { Progress } from "@/components/ui/progress";
 import { useNavigate } from "react-router-dom";
 import AppLayout from "@/components/AppLayout";
 import { BookOpen, Award, Heart, Compass } from "lucide-react";
+import TrialBanner from "@/components/TrialBanner";
 
 interface DailyDevotional {
   title: string;
@@ -84,6 +85,7 @@ const Dashboard = () => {
   return (
     <AppLayout>
       <div className="space-y-8">
+        <TrialBanner />
         {/* Welcome */}
         <div>
           <h1 className="font-serif text-3xl font-bold text-foreground">

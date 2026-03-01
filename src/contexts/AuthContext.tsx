@@ -8,7 +8,7 @@ interface AuthContextType {
   isLoading: boolean;
   isApproved: boolean;
   isAdmin: boolean;
-  profile: { full_name: string; email: string } | null;
+  profile: { full_name: string; email: string; trial_started_at: string; has_paid: boolean } | null;
   signOut: () => Promise<void>;
 }
 
@@ -30,17 +30,17 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [isApproved, setIsApproved] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
-  const [profile, setProfile] = useState<{ full_name: string; email: string } | null>(null);
+  const [profile, setProfile] = useState<{ full_name: string; email: string; trial_started_at: string; has_paid: boolean } | null>(null);
 
   const fetchUserData = async (userId: string) => {
     const [profileRes, roleRes] = await Promise.all([
-      supabase.from("profiles").select("full_name, email, is_approved").eq("user_id", userId).single(),
+      supabase.from("profiles").select("full_name, email, is_approved, trial_started_at, has_paid").eq("user_id", userId).single(),
       supabase.from("user_roles").select("role").eq("user_id", userId),
     ]);
 
     if (profileRes.data) {
       setIsApproved(profileRes.data.is_approved);
-      setProfile({ full_name: profileRes.data.full_name, email: profileRes.data.email });
+      setProfile({ full_name: profileRes.data.full_name, email: profileRes.data.email, trial_started_at: profileRes.data.trial_started_at, has_paid: profileRes.data.has_paid });
     }
 
     if (roleRes.data) {
