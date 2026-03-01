@@ -10,6 +10,7 @@ import { Compass, CheckCircle2, Lock } from "lucide-react";
 import { toast } from "sonner";
 import UpgradeGate from "@/components/UpgradeGate";
 import TrialBanner from "@/components/TrialBanner";
+import AudioPlayer from "@/components/AudioPlayer";
 
 const courseWeeks = [
   {
@@ -195,6 +196,10 @@ const Modules = () => {
 
                   {canAccess && (
                     <>
+                      <AudioPlayer
+                        text={`${week.title}. ${week.subtitle}. ${week.description}. Tarefas da semana: ${week.tasks.join(". ")}`}
+                        label="Ouvir Ensinamento"
+                      />
                       <div className="space-y-2">
                         <p className="text-sm font-medium text-foreground">Tarefas da Semana:</p>
                         {week.tasks.map((task, i) => (

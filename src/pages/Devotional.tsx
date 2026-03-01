@@ -7,6 +7,7 @@ import { Heart, RefreshCw } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import UpgradeGate from "@/components/UpgradeGate";
 import TrialBanner from "@/components/TrialBanner";
+import AudioPlayer from "@/components/AudioPlayer";
 
 const apostles = [
   "Paulo", "Pedro", "João", "Tiago", "André", "Filipe", "Bartolomeu",
@@ -96,6 +97,11 @@ const Devotional = () => {
                   <p className="italic text-foreground/80 text-lg">"{devotional.verse}"</p>
                   <p className="text-gold text-sm mt-2 font-medium">— {devotional.verse_reference} (NVI)</p>
                 </blockquote>
+
+                <AudioPlayer
+                  text={`${devotional.title}. ${devotional.content}. ${devotional.verse}. ${devotional.verse_reference}. Palavra de Conforto: ${devotional.comfort_word}`}
+                  label="Ouvir Devocional"
+                />
               </CardContent>
             </Card>
 
