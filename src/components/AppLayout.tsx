@@ -1,14 +1,14 @@
 import { ReactNode } from "react";
 import { useAuth } from "@/contexts/AuthContext";
 import { useNavigate, useLocation } from "react-router-dom";
-import { BookOpen, Home, Award, Heart, Compass, Shield, LogOut } from "lucide-react";
+import { BookOpen, Home, Award, Heart, Compass, Shield, LogOut, Sparkles } from "lucide-react";
 
 const navItems = [
   { icon: Home, label: "Início", path: "/dashboard" },
+  { icon: Sparkles, label: "Versículo", path: "/versiculo" },
   { icon: Heart, label: "Devocional", path: "/devocional" },
   { icon: BookOpen, label: "Bíblia", path: "/biblia" },
   { icon: Compass, label: "Módulos", path: "/modulos" },
-  { icon: Award, label: "Medalhas", path: "/medalhas" },
 ];
 
 const AppLayout = ({ children }: { children: ReactNode }) => {
