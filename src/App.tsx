@@ -11,6 +11,7 @@ import Bible from "./pages/Bible";
 import Devotional from "./pages/Devotional";
 import Modules from "./pages/Modules";
 import Medals from "./pages/Medals";
+import DailyVerse from "./pages/DailyVerse";
 import Admin from "./pages/Admin";
 import NotFound from "./pages/NotFound";
 
@@ -38,6 +39,7 @@ const App = () => (
             <Route path="/devocional" element={<ProtectedRoute><Devotional /></ProtectedRoute>} />
             <Route path="/modulos" element={<ProtectedRoute><Modules /></ProtectedRoute>} />
             <Route path="/medalhas" element={<ProtectedRoute><Medals /></ProtectedRoute>} />
+            <Route path="/versiculo" element={<ProtectedRoute><DailyVerse /></ProtectedRoute>} />
             <Route path="/admin" element={<ProtectedRoute><Admin /></ProtectedRoute>} />
             <Route path="*" element={<NotFound />} />
           </Routes>

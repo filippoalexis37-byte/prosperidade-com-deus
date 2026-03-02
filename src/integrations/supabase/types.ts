@@ -50,6 +50,33 @@ export type Database = {
         }
         Relationships: []
       }
+      daily_verses: {
+        Row: {
+          background_index: number
+          created_at: string
+          id: string
+          verse_date: string
+          verse_reference: string
+          verse_text: string
+        }
+        Insert: {
+          background_index?: number
+          created_at?: string
+          id?: string
+          verse_date?: string
+          verse_reference: string
+          verse_text: string
+        }
+        Update: {
+          background_index?: number
+          created_at?: string
+          id?: string
+          verse_date?: string
+          verse_reference?: string
+          verse_text?: string
+        }
+        Relationships: []
+      }
       medals: {
         Row: {
           created_at: string
@@ -186,6 +213,35 @@ export type Database = {
           user_id?: string
         }
         Relationships: []
+      }
+      verse_favorites: {
+        Row: {
+          created_at: string
+          id: string
+          user_id: string
+          verse_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          user_id: string
+          verse_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          user_id?: string
+          verse_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "verse_favorites_verse_id_fkey"
+            columns: ["verse_id"]
+            isOneToOne: false
+            referencedRelation: "daily_verses"
+            referencedColumns: ["id"]
+          },
+        ]
       }
     }
     Views: {
