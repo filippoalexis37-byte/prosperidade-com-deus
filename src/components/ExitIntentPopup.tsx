@@ -75,8 +75,8 @@ const ExitIntentPopup = () => {
           </p>
           <span className="font-mono text-2xl font-bold text-gold tracking-widest">OFF50</span>
           <p className="text-muted-foreground text-sm mt-1">
-            De <span className="line-through">R$ 29,90</span> por apenas{" "}
-            <span className="text-gold font-bold">R$ 14,90</span>
+            De <span className="line-through">R$ 29,90/mês</span> por apenas{" "}
+            <span className="text-gold font-bold">R$ 14,95/mês</span>
           </p>
         </div>
 

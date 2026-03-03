@@ -1,7 +1,9 @@
 import { ReactNode } from "react";
 import { useAuth } from "@/contexts/AuthContext";
+import { useSubscription } from "@/hooks/useSubscription";
 import { useNavigate, useLocation } from "react-router-dom";
-import { BookOpen, Home, Award, Heart, Compass, Shield, LogOut, Sparkles } from "lucide-react";
+import { BookOpen, Home, Award, Heart, Compass, Shield, LogOut, Sparkles, Crown } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
 
 const navItems = [
   { icon: Home, label: "Início", path: "/dashboard" },
@@ -13,6 +15,7 @@ const navItems = [
 
 const AppLayout = ({ children }: { children: ReactNode }) => {
   const { signOut, isAdmin, profile } = useAuth();
+  const { status } = useSubscription();
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -28,6 +31,11 @@ const AppLayout = ({ children }: { children: ReactNode }) => {
             Prosperidade com Deus
           </h1>
           <div className="flex items-center gap-3">
+            {status === "paid" && (
+              <Badge variant="outline" className="border-gold/30 text-gold text-[10px] gap-1">
+                <Crown className="w-3 h-3" /> Premium
+              </Badge>
+            )}
             {isAdmin && (
               <button
                 onClick={() => navigate("/admin")}
