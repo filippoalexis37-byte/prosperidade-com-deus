@@ -29,17 +29,18 @@ const HeroSection = () => {
           Como colocar Deus no centro da sua vida, restaurar sua identidade e
           não repetir os erros que atrasam sua prosperidade.
         </p>
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <a href="https://www.ggcheckout.com/checkout/v3/9Mi4R0FainnLnX9wzmRn" target="_blank" rel="noopener noreferrer">
+        <div className="flex flex-col items-center gap-4">
+          <a href="/auth">
             <Button variant="hero" size="lg" className="text-lg px-10 py-6">
-              Quero Começar Agora
+              Começar 7 Dias Grátis
             </Button>
           </a>
-          <a href="https://www.ggcheckout.com/checkout/v3/9Mi4R0FainnLnX9wzmRn" target="_blank" rel="noopener noreferrer">
-            <Button variant="heroOutline" size="lg" className="text-lg px-10 py-6">
-              Saiba Mais
-            </Button>
-          </a>
+          <p className="text-muted-foreground text-sm">
+            Teste gratuito por 7 dias · Sem compromisso · Cancele quando quiser
+          </p>
+          <p className="text-muted-foreground/60 text-xs">
+            Após o teste: R$ 29,90/mês · <span className="text-gold">Cupom OFF50 = R$ 14,95/mês</span>
+          </p>
         </div>
       </div>
 
