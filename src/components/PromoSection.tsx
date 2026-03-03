@@ -74,11 +74,11 @@ const PromoSection = () => {
           </div>
 
           {/* Pricing */}
-          <p className="text-muted-foreground text-sm mb-1">Preço promocional</p>
+          <p className="text-muted-foreground text-sm mb-1">Assinatura mensal</p>
           <div className="flex items-center justify-center gap-3 mb-2">
-            <span className="text-muted-foreground line-through text-xl">R$ 29,90</span>
+            <span className="text-muted-foreground line-through text-xl">R$ 29,90/mês</span>
             <span className="font-serif text-5xl md:text-6xl font-bold text-gradient-gold">
-              R$ 14,90
+              R$ 14,95<span className="text-lg font-normal text-muted-foreground">/mês</span>
             </span>
           </div>
           <div className="mb-8" />

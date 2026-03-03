@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import AppLayout from "@/components/AppLayout";
 import { BookOpen, Award, Heart, Compass, Flame, CalendarDays, Lock, CheckCircle2, Sparkles } from "lucide-react";
 import TrialBanner from "@/components/TrialBanner";
+import NotificationSettings from "@/components/NotificationSettings";
 import { useStreak } from "@/hooks/useStreak";
 import { useSubscription } from "@/hooks/useSubscription";
 
@@ -319,6 +320,8 @@ const Dashboard = () => {
             </CardContent>
           </Card>
         )}
+        {/* Notification Settings */}
+        <NotificationSettings />
       </div>
     </AppLayout>
   );
