@@ -77,6 +77,89 @@ export type Database = {
         }
         Relationships: []
       }
+      devotional_plan_days: {
+        Row: {
+          complementary_verses: string
+          created_at: string
+          day_number: number
+          id: string
+          main_verse: string
+          main_verse_reference: string
+          plan_id: string
+          prayer: string
+          reflection: string
+          title: string
+        }
+        Insert: {
+          complementary_verses?: string
+          created_at?: string
+          day_number: number
+          id?: string
+          main_verse: string
+          main_verse_reference: string
+          plan_id: string
+          prayer?: string
+          reflection?: string
+          title: string
+        }
+        Update: {
+          complementary_verses?: string
+          created_at?: string
+          day_number?: number
+          id?: string
+          main_verse?: string
+          main_verse_reference?: string
+          plan_id?: string
+          prayer?: string
+          reflection?: string
+          title?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "devotional_plan_days_plan_id_fkey"
+            columns: ["plan_id"]
+            isOneToOne: false
+            referencedRelation: "devotional_plans"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      devotional_plans: {
+        Row: {
+          author: string
+          cover_image_url: string
+          created_at: string
+          description: string
+          duration_days: number
+          id: string
+          rating: number
+          sort_order: number
+          title: string
+        }
+        Insert: {
+          author?: string
+          cover_image_url?: string
+          created_at?: string
+          description?: string
+          duration_days?: number
+          id?: string
+          rating?: number
+          sort_order?: number
+          title: string
+        }
+        Update: {
+          author?: string
+          cover_image_url?: string
+          created_at?: string
+          description?: string
+          duration_days?: number
+          id?: string
+          rating?: number
+          sort_order?: number
+          title?: string
+        }
+        Relationships: []
+      }
       medals: {
         Row: {
           created_at: string
@@ -219,6 +302,73 @@ export type Database = {
             columns: ["medal_id"]
             isOneToOne: false
             referencedRelation: "medals"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      user_plan_day_completions: {
+        Row: {
+          completed_at: string
+          day_number: number
+          id: string
+          plan_id: string
+          user_id: string
+        }
+        Insert: {
+          completed_at?: string
+          day_number: number
+          id?: string
+          plan_id: string
+          user_id: string
+        }
+        Update: {
+          completed_at?: string
+          day_number?: number
+          id?: string
+          plan_id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "user_plan_day_completions_plan_id_fkey"
+            columns: ["plan_id"]
+            isOneToOne: false
+            referencedRelation: "devotional_plans"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      user_plan_progress: {
+        Row: {
+          completed_at: string | null
+          created_at: string
+          id: string
+          plan_id: string
+          started_at: string
+          user_id: string
+        }
+        Insert: {
+          completed_at?: string | null
+          created_at?: string
+          id?: string
+          plan_id: string
+          started_at?: string
+          user_id: string
+        }
+        Update: {
+          completed_at?: string | null
+          created_at?: string
+          id?: string
+          plan_id?: string
+          started_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "user_plan_progress_plan_id_fkey"
+            columns: ["plan_id"]
+            isOneToOne: false
+            referencedRelation: "devotional_plans"
             referencedColumns: ["id"]
           },
         ]

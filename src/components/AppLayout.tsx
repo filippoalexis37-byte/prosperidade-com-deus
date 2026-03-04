@@ -2,13 +2,14 @@ import { ReactNode } from "react";
 import { useAuth } from "@/contexts/AuthContext";
 import { useSubscription } from "@/hooks/useSubscription";
 import { useNavigate, useLocation } from "react-router-dom";
-import { BookOpen, Home, Award, Heart, Compass, Shield, LogOut, Sparkles, Crown } from "lucide-react";
+import { BookOpen, Home, Award, Heart, Compass, Shield, LogOut, Sparkles, Crown, Library } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 
 const navItems = [
   { icon: Home, label: "Início", path: "/dashboard" },
   { icon: Sparkles, label: "Versículo", path: "/versiculo" },
   { icon: Heart, label: "Devocional", path: "/devocional" },
+  { icon: Library, label: "Planos", path: "/planos" },
   { icon: BookOpen, label: "Bíblia", path: "/biblia" },
   { icon: Compass, label: "Módulos", path: "/modulos" },
 ];
@@ -64,7 +65,7 @@ const AppLayout = ({ children }: { children: ReactNode }) => {
               <button
                 key={item.path}
                 onClick={() => navigate(item.path)}
-                className={`flex flex-col items-center gap-1 px-3 py-1 transition-colors ${
+                className={`flex flex-col items-center gap-1 px-2 py-1 transition-colors ${
                   active ? "text-gold" : "text-muted-foreground hover:text-foreground"
                 }`}
               >
