@@ -12,6 +12,9 @@ import Devotional from "./pages/Devotional";
 import Modules from "./pages/Modules";
 import Medals from "./pages/Medals";
 import DailyVerse from "./pages/DailyVerse";
+import Plans from "./pages/Plans";
+import PlanDetail from "./pages/PlanDetail";
+import PlanDay from "./pages/PlanDay";
 import Admin from "./pages/Admin";
 import NotFound from "./pages/NotFound";
 
@@ -40,6 +43,9 @@ const App = () => (
             <Route path="/modulos" element={<ProtectedRoute><Modules /></ProtectedRoute>} />
             <Route path="/medalhas" element={<ProtectedRoute><Medals /></ProtectedRoute>} />
             <Route path="/versiculo" element={<ProtectedRoute><DailyVerse /></ProtectedRoute>} />
+            <Route path="/planos" element={<ProtectedRoute><Plans /></ProtectedRoute>} />
+            <Route path="/planos/:planId" element={<ProtectedRoute><PlanDetail /></ProtectedRoute>} />
+            <Route path="/planos/:planId/dia/:dayNumber" element={<ProtectedRoute><PlanDay /></ProtectedRoute>} />
             <Route path="/admin" element={<ProtectedRoute><Admin /></ProtectedRoute>} />
             <Route path="*" element={<NotFound />} />
           </Routes>
