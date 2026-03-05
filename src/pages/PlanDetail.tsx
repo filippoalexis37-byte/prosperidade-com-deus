@@ -58,7 +58,7 @@ const PlanDetail = () => {
       .select()
       .single();
     if (data) {
-      setProgress(data as UserProgress);
+      setProgress(data as unknown as UserProgress);
       navigate(`/planos/${planId}/dia/1`);
     }
   };
