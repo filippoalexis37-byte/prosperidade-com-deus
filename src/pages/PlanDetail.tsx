@@ -42,8 +42,8 @@ const PlanDetail = () => {
         supabase.from('user_plan_day_completions' as any).select('day_number').eq('user_id', user.id).eq('plan_id', planId),
       ]);
 
-      if (planRes.data) setPlan(planRes.data as Plan);
-      if (progressRes.data) setProgress(progressRes.data as UserProgress);
+      if (planRes.data) setPlan(planRes.data as unknown as Plan);
+      if (progressRes.data) setProgress(progressRes.data as unknown as UserProgress);
       if (completionsRes.data) setCompletedDays((completionsRes.data as any[]).map(d => d.day_number));
       setLoading(false);
     };
