@@ -27,7 +27,7 @@ const Plans = () => {
         .from('devotional_plans' as any)
         .select('*')
         .order('sort_order');
-      if (data) setPlans(data as Plan[]);
+      if (data) setPlans(data as unknown as Plan[]);
       setLoading(false);
     };
     fetchPlans();
