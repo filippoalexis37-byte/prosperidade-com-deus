@@ -39,7 +39,7 @@ const PlanDay = () => {
         supabase.from('devotional_plans' as any).select('title, duration_days').eq('id', planId).single(),
       ]);
 
-      if (dayRes.data) setDay(dayRes.data as DayContent);
+      if (dayRes.data) setDay(dayRes.data as unknown as DayContent);
       if (completionRes.data) setIsCompleted(true);
       if (planRes.data) {
         setPlanTitle((planRes.data as any).title);
