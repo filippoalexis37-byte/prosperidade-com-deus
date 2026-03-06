@@ -5,25 +5,25 @@ const benefits = [
     icon: BookOpen,
     title: "Devocional Diário",
     description:
-      "Uma palavra diária para fortalecer sua fé e começar o dia com Deus.",
+      "Uma palavra diária para fortalecer sua fé e alinhar seu dia com Deus.",
   },
   {
     icon: Sun,
     title: "Versículo do Dia",
     description:
-      "Receba diariamente um versículo para meditar e aplicar na sua vida.",
+      "Receba um versículo diariamente para meditar e aplicar na sua vida.",
   },
   {
     icon: Map,
-    title: "Planos Espirituais Guiados",
+    title: "Planos Espirituais",
     description:
-      "Planos sobre ansiedade, medo, propósito, disciplina espiritual e crescimento.",
+      "Planos guiados sobre ansiedade, medo, propósito e disciplina espiritual.",
   },
   {
     icon: TrendingUp,
-    title: "Jornada Espiritual",
+    title: "Crescimento Espiritual",
     description:
-      "Acompanhe seu progresso espiritual e desenvolva disciplina com Deus.",
+      "Desenvolva o hábito de buscar a Deus todos os dias.",
   },
 ];
 
