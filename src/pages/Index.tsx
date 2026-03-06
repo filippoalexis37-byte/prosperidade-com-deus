@@ -1,4 +1,5 @@
 import HeroSection from "@/components/HeroSection";
+import PainSolutionSection from "@/components/PainSolutionSection";
 import ModulesSection from "@/components/ModulesSection";
 import AppDemoSection from "@/components/AppDemoSection";
 import PromoSection from "@/components/PromoSection";
