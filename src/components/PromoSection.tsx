@@ -114,7 +114,7 @@ const PromoSection = () => {
           <div className="flex flex-wrap justify-center gap-4 mt-6 text-muted-foreground text-xs">
             <span className="flex items-center gap-1"><Check className="w-3.5 h-3.5 text-gold" /> Acesso imediato</span>
             <span className="flex items-center gap-1"><Check className="w-3.5 h-3.5 text-gold" /> Pagamento seguro</span>
-            <span className="flex items-center gap-1"><Check className="w-3.5 h-3.5 text-gold" /> Cancelamento fácil</span>
+            <span className="flex items-center gap-1"><Check className="w-3.5 h-3.5 text-gold" /> Cancele quando quiser</span>
           </div>
         </div>
       </div>
