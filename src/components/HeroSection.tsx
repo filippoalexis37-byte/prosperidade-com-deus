@@ -18,28 +18,26 @@ const HeroSection = () => {
       {/* Content */}
       <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">
         <p className="text-gold-light font-sans text-sm tracking-[0.3em] uppercase mb-6 animate-fade-in">
-          Transforme sua vida espiritual, emocional e financeira
+          Aplicativo Cristão de Devocionais
         </p>
-        <h1 className="font-serif text-5xl md:text-7xl lg:text-8xl font-bold leading-tight mb-8">
-          <span className="text-gradient-gold">Prosperidade</span>
+        <h1 className="font-serif text-4xl md:text-6xl lg:text-7xl font-bold leading-tight mb-8">
+          <span className="text-foreground">O aplicativo cristão para</span>
           <br />
-          <span className="text-foreground">com Deus</span>
+          <span className="text-gradient-gold">fortalecer sua fé</span>
+          <span className="text-foreground"> todos os dias</span>
         </h1>
         <p className="text-muted-foreground text-lg md:text-xl max-w-2xl mx-auto mb-12 font-light leading-relaxed">
-          Como colocar Deus no centro da sua vida, restaurar sua identidade e
-          não repetir os erros que atrasam sua prosperidade.
+          Devocionais diários, versículo do dia e planos espirituais para
+          ansiedade, medo, propósito e crescimento com Deus.
         </p>
         <div className="flex flex-col items-center gap-4">
           <a href="/auth">
             <Button variant="hero" size="lg" className="text-lg px-10 py-6">
-              Começar 7 Dias Grátis
+              Começar teste grátis
             </Button>
           </a>
           <p className="text-muted-foreground text-sm">
-            Teste gratuito por 7 dias · Sem compromisso · Cancele quando quiser
-          </p>
-          <p className="text-muted-foreground/60 text-xs">
-            Após o teste: R$ 29,90/mês · <span className="text-gold">Cupom OFF50 = R$ 14,95/mês</span>
+            7 dias grátis • Sem cobrança hoje • Cancele quando quiser
           </p>
         </div>
       </div>

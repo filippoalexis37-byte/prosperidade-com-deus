@@ -5,13 +5,13 @@ const AppDemoSection = () => {
     <section className="py-24 px-6 bg-background" id="demo">
       <div className="max-w-4xl mx-auto text-center">
         <p className="text-gold font-sans text-sm tracking-[0.3em] uppercase mb-4">
-          Veja Por Dentro
+          Conheça o App
         </p>
         <h2 className="font-serif text-4xl md:text-5xl font-bold text-foreground mb-6">
-          Conheça o <span className="text-gradient-gold">App</span>
+          Um aplicativo completo para sua <span className="text-gradient-gold">jornada espiritual</span>
         </h2>
         <p className="text-muted-foreground text-lg max-w-xl mx-auto mb-12">
-          Um aplicativo completo para sua jornada espiritual diária, com devocionais, meditações e muito mais.
+          Prosperidade com Deus é um aplicativo criado para ajudar você a desenvolver uma vida espiritual forte através de devocionais, versículos diários e planos guiados.
         </p>
 
         <div className="relative mx-auto max-w-sm">
