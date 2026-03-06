@@ -34,11 +34,9 @@ const PromoSection = () => {
 
   return (
     <section className="py-20 px-6 bg-gradient-dark relative overflow-hidden" id="oferta">
-      {/* Glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full bg-gold/5 blur-3xl pointer-events-none" />
 
       <div className="relative max-w-2xl mx-auto">
-        {/* Badge */}
         <div className="flex justify-center mb-6">
           <span className="inline-flex items-center gap-2 bg-destructive/20 text-destructive border border-destructive/30 rounded-full px-4 py-1.5 text-sm font-semibold animate-pulse">
             <Clock className="w-4 h-4" />
@@ -47,13 +45,12 @@ const PromoSection = () => {
         </div>
 
         <h2 className="font-serif text-4xl md:text-5xl font-bold text-foreground text-center mb-4">
-          Oferta <span className="text-gradient-gold">Especial</span>
+          Comece sua jornada <span className="text-gradient-gold">espiritual hoje</span>
         </h2>
         <p className="text-muted-foreground text-center text-lg mb-10 max-w-lg mx-auto">
           Aproveite o preço promocional antes que o tempo acabe!
         </p>
 
-        {/* Card */}
         <div className="bg-card border border-gold/20 rounded-3xl p-8 md:p-10 text-center glow-gold">
           {/* Timer */}
           <div className="flex justify-center gap-3 mb-8">
@@ -73,15 +70,20 @@ const PromoSection = () => {
             ))}
           </div>
 
+          {/* Free trial highlight */}
+          <div className="bg-gold/10 border border-gold/20 rounded-xl py-3 px-6 mb-6 inline-block">
+            <span className="text-gold font-semibold text-lg">7 dias grátis</span>
+          </div>
+
           {/* Pricing */}
-          <p className="text-muted-foreground text-sm mb-1">Assinatura mensal</p>
+          <p className="text-muted-foreground text-sm mb-1">Depois do teste</p>
           <div className="flex items-center justify-center gap-3 mb-2">
             <span className="text-muted-foreground line-through text-xl">R$ 29,90/mês</span>
             <span className="font-serif text-5xl md:text-6xl font-bold text-gradient-gold">
               R$ 14,95<span className="text-lg font-normal text-muted-foreground">/mês</span>
             </span>
           </div>
-          <div className="mb-8" />
+          <div className="mb-6" />
 
           {/* Coupon */}
           <div className="bg-secondary/60 border border-dashed border-gold/30 rounded-xl p-4 mb-8 max-w-xs mx-auto">
@@ -102,13 +104,9 @@ const PromoSection = () => {
           </div>
 
           {/* CTA */}
-          <a
-            href="https://www.ggcheckout.com/checkout/v3/9Mi4R0FainnLnX9wzmRn"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <a href="/auth">
             <Button variant="hero" size="lg" className="text-lg px-12 py-7 w-full sm:w-auto">
-              Garantir Minha Vaga Agora
+              Começar teste grátis
             </Button>
           </a>
 
@@ -116,7 +114,7 @@ const PromoSection = () => {
           <div className="flex flex-wrap justify-center gap-4 mt-6 text-muted-foreground text-xs">
             <span className="flex items-center gap-1"><Check className="w-3.5 h-3.5 text-gold" /> Acesso imediato</span>
             <span className="flex items-center gap-1"><Check className="w-3.5 h-3.5 text-gold" /> Pagamento seguro</span>
-            <span className="flex items-center gap-1"><Check className="w-3.5 h-3.5 text-gold" /> Garantia de 7 dias</span>
+            <span className="flex items-center gap-1"><Check className="w-3.5 h-3.5 text-gold" /> Cancelamento fácil</span>
           </div>
         </div>
       </div>
