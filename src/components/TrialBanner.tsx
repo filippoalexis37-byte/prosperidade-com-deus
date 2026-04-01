@@ -53,7 +53,7 @@ const TrialBanner = () => {
         onClick={() => window.open(CHECKOUT_URL, "_blank")}
       >
         <Sparkles className="w-4 h-4" />
-        Assinar por R$14,95/mês (cupom OFF50)
+        Assinar por R$14,90/mês
       </Button>
     </div>
   );

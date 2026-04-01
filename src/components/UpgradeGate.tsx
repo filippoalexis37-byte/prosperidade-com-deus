@@ -1,8 +1,6 @@
-import { useState } from "react";
 import { useSubscription } from "@/hooks/useSubscription";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Lock, Sparkles, Tag, Check, BookOpen, Headphones, Flame, DollarSign } from "lucide-react";
+import { Lock, Sparkles, BookOpen, Headphones, Flame, DollarSign } from "lucide-react";
 
 interface UpgradeGateProps {
   children: React.ReactNode;
@@ -12,8 +10,6 @@ const CHECKOUT_URL = "https://www.ggcheckout.com/checkout/v3/9Mi4R0FainnLnX9wzmR
 
 const UpgradeGate = ({ children }: UpgradeGateProps) => {
   const { status } = useSubscription();
-  const [coupon, setCoupon] = useState("");
-  const [couponApplied, setCouponApplied] = useState(false);
 
   if (status === "loading") {
     return (
@@ -24,11 +20,6 @@ const UpgradeGate = ({ children }: UpgradeGateProps) => {
   }
 
   if (status === "expired") {
-    const applyCoupon = () => {
-      if (coupon.trim().toUpperCase() === "OFF50") {
-        setCouponApplied(true);
-      }
-    };
 
     const features = [
       { icon: BookOpen, text: "Todos os devocionais diários" },
@@ -53,42 +44,9 @@ const UpgradeGate = ({ children }: UpgradeGateProps) => {
 
         {/* Pricing */}
         <div className="space-y-1">
-          {couponApplied ? (
-            <>
-              <p className="text-muted-foreground text-sm">
-                De <span className="line-through">R$ 29,90/mês</span>
-              </p>
-              <p className="font-serif text-4xl md:text-5xl font-bold text-gradient-gold">
-                R$ 14,95<span className="text-lg font-normal text-muted-foreground">/mês</span>
-              </p>
-            </>
-          ) : (
-            <p className="font-serif text-4xl md:text-5xl font-bold text-gradient-gold">
-              R$ 29,90<span className="text-lg font-normal text-muted-foreground">/mês</span>
-            </p>
-          )}
-        </div>
-
-        {/* Coupon */}
-        <div className="w-full max-w-xs space-y-2">
-          {couponApplied ? (
-            <div className="flex items-center justify-center gap-2 text-green-400 text-sm font-medium">
-              <Check className="w-4 h-4" />
-              Cupom aplicado com sucesso!
-            </div>
-          ) : (
-            <div className="flex gap-2">
-              <Input
-                placeholder="Cupom de desconto"
-                value={coupon}
-                onChange={(e) => setCoupon(e.target.value)}
-                className="text-center uppercase tracking-wider"
-              />
-              <Button variant="outline" size="default" onClick={applyCoupon}>
-                <Tag className="w-4 h-4" />
-              </Button>
-            </div>
-          )}
+          <p className="font-serif text-4xl md:text-5xl font-bold text-gradient-gold">
+            R$ 14,90<span className="text-lg font-normal text-muted-foreground">/mês</span>
+          </p>
         </div>
 
         {/* Features */}
