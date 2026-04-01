@@ -1,8 +1,6 @@
-import { useState } from "react";
 import { useSubscription } from "@/hooks/useSubscription";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Lock, Sparkles, Tag, Check, BookOpen, Headphones, Flame, DollarSign } from "lucide-react";
+import { Lock, Sparkles, BookOpen, Headphones, Flame, DollarSign } from "lucide-react";
 
 interface UpgradeGateProps {
   children: React.ReactNode;
