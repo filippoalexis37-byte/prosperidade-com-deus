@@ -10,8 +10,6 @@ const CHECKOUT_URL = "https://www.ggcheckout.com/checkout/v3/9Mi4R0FainnLnX9wzmR
 
 const UpgradeGate = ({ children }: UpgradeGateProps) => {
   const { status } = useSubscription();
-  const [coupon, setCoupon] = useState("");
-  const [couponApplied, setCouponApplied] = useState(false);
 
   if (status === "loading") {
     return (

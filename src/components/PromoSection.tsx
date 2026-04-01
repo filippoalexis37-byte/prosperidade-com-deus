@@ -7,7 +7,6 @@ PROMO_END.setHours(PROMO_END.getHours() + 23, 59, 59);
 
 const PromoSection = () => {
   const [timeLeft, setTimeLeft] = useState({ hours: 0, minutes: 0, seconds: 0 });
-  const [copied, setCopied] = useState(false);
 
   useEffect(() => {
     const tick = () => {
