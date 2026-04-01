@@ -20,11 +20,6 @@ const UpgradeGate = ({ children }: UpgradeGateProps) => {
   }
 
   if (status === "expired") {
-    const applyCoupon = () => {
-      if (coupon.trim().toUpperCase() === "OFF50") {
-        setCouponApplied(true);
-      }
-    };
 
     const features = [
       { icon: BookOpen, text: "Todos os devocionais diários" },

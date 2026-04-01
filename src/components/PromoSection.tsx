@@ -23,12 +23,6 @@ const PromoSection = () => {
     return () => clearInterval(id);
   }, []);
 
-  const handleCopy = () => {
-    navigator.clipboard.writeText("OFF50");
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  };
-
   const pad = (n: number) => String(n).padStart(2, "0");
 
   return (
