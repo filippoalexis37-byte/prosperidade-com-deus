@@ -19,7 +19,7 @@ const AppDemoSection = () => {
             <img
               src={appShowcase}
               alt="Prosperidade com Deus - Aplicativo cristão com devocionais diários, versículo do dia e planos espirituais"
-              className="w-full aspect-[9/16] object-cover"
+              className="w-full object-contain"
             />
           </div>
           <div className="absolute -inset-4 bg-gold/5 rounded-[3rem] blur-2xl -z-10" />
