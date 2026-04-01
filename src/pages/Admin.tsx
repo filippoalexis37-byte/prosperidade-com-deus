@@ -15,8 +15,17 @@ interface UserProfile {
   full_name: string;
   email: string;
   is_approved: boolean;
+  has_paid: boolean;
+  trial_started_at: string;
   created_at: string;
 }
+
+const getTrialStatus = (user: UserProfile): "paid" | "trial" | "expired" => {
+  if (user.has_paid) return "paid";
+  const trialEnd = new Date(user.trial_started_at).getTime() + 7 * 24 * 60 * 60 * 1000;
+  if (Date.now() < trialEnd) return "trial";
+  return "expired";
+};
 
 const Admin = () => {
   const { isAdmin } = useAuth();
