@@ -1,4 +1,4 @@
-import appDemo from "@/assets/app-demo.mp4";
+import appShowcase from "@/assets/app-showcase.jpg";
 
 const AppDemoSection = () => {
   return (
@@ -15,18 +15,13 @@ const AppDemoSection = () => {
         </p>
 
         <div className="relative mx-auto max-w-sm">
-          {/* Phone frame */}
           <div className="relative rounded-[2.5rem] border-4 border-gold/30 overflow-hidden shadow-2xl bg-card">
-            <video
-              src={appDemo}
-              autoPlay
-              loop
-              muted
-              playsInline
+            <img
+              src={appShowcase}
+              alt="Prosperidade com Deus - Aplicativo cristão com devocionais diários, versículo do dia e planos espirituais"
               className="w-full aspect-[9/16] object-cover"
             />
           </div>
-          {/* Glow effect */}
           <div className="absolute -inset-4 bg-gold/5 rounded-[3rem] blur-2xl -z-10" />
         </div>
       </div>

@@ -77,30 +77,10 @@ const PromoSection = () => {
 
           {/* Pricing */}
           <p className="text-muted-foreground text-sm mb-1">Depois do teste</p>
-          <div className="flex items-center justify-center gap-3 mb-2">
-            <span className="text-muted-foreground line-through text-xl">R$ 29,90/mês</span>
+          <div className="flex items-center justify-center gap-3 mb-8">
             <span className="font-serif text-5xl md:text-6xl font-bold text-gradient-gold">
-              R$ 14,95<span className="text-lg font-normal text-muted-foreground">/mês</span>
+              R$ 14,90<span className="text-lg font-normal text-muted-foreground">/mês</span>
             </span>
-          </div>
-          <div className="mb-6" />
-
-          {/* Coupon */}
-          <div className="bg-secondary/60 border border-dashed border-gold/30 rounded-xl p-4 mb-8 max-w-xs mx-auto">
-            <p className="text-muted-foreground text-xs uppercase tracking-wider mb-2 flex items-center justify-center gap-1.5">
-              <Tag className="w-3.5 h-3.5" />
-              Cupom de Desconto
-            </p>
-            <div className="flex items-center justify-center gap-3">
-              <span className="font-mono text-2xl font-bold text-gold tracking-widest">OFF50</span>
-              <button
-                onClick={handleCopy}
-                className="text-muted-foreground hover:text-gold transition-colors"
-                aria-label="Copiar cupom"
-              >
-                {copied ? <Check className="w-5 h-5 text-green-400" /> : <Copy className="w-5 h-5" />}
-              </button>
-            </div>
           </div>
 
           {/* CTA */}
