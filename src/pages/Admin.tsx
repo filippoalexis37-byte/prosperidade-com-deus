@@ -5,7 +5,7 @@ import AppLayout from "@/components/AppLayout";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Shield, UserCheck, UserX, Users } from "lucide-react";
+import { Shield, UserCheck, UserX, Users, AlertTriangle, DollarSign } from "lucide-react";
 import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
 
@@ -15,8 +15,17 @@ interface UserProfile {
   full_name: string;
   email: string;
   is_approved: boolean;
+  has_paid: boolean;
+  trial_started_at: string;
   created_at: string;
 }
+
+const getTrialStatus = (user: UserProfile): "paid" | "trial" | "expired" => {
+  if (user.has_paid) return "paid";
+  const trialEnd = new Date(user.trial_started_at).getTime() + 7 * 24 * 60 * 60 * 1000;
+  if (Date.now() < trialEnd) return "trial";
+  return "expired";
+};
 
 const Admin = () => {
   const { isAdmin } = useAuth();
@@ -132,19 +141,41 @@ const Admin = () => {
                       {new Date(user.created_at).toLocaleDateString("pt-BR")}
                     </p>
                   </div>
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-2 flex-wrap justify-end">
+                    {/* Payment/trial status */}
+                    {(() => {
+                      const trialStatus = getTrialStatus(user);
+                      if (trialStatus === "paid") {
+                        return (
+                          <Badge className="bg-green-500/20 text-green-400 border-green-500/30">
+                            <DollarSign className="w-3 h-3 mr-1" /> Pago
+                          </Badge>
+                        );
+                      }
+                      if (trialStatus === "expired") {
+                        return (
+                          <Badge className="bg-destructive/20 text-destructive border-destructive/30">
+                            <AlertTriangle className="w-3 h-3 mr-1" /> Expirado - Pgto pendente
+                          </Badge>
+                        );
+                      }
+                      return (
+                        <Badge className="bg-gold/20 text-gold border-gold/30">
+                          Teste grátis
+                        </Badge>
+                      );
+                    })()}
+
+                    {/* Approval */}
                     {user.is_approved ? (
-                      <>
-                        <Badge className="bg-green-500/20 text-green-400 border-green-500/30">Aprovado</Badge>
-                        <Button
-                          variant="outline"
-                          size="sm"
-                          onClick={() => toggleApproval(user.user_id, false)}
-                          className="text-red-400 border-red-400/30"
-                        >
-                          Revogar
-                        </Button>
-                      </>
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => toggleApproval(user.user_id, false)}
+                        className="text-red-400 border-red-400/30"
+                      >
+                        Revogar
+                      </Button>
                     ) : (
                       <Button
                         variant="hero"
