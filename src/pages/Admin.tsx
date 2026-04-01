@@ -141,19 +141,41 @@ const Admin = () => {
                       {new Date(user.created_at).toLocaleDateString("pt-BR")}
                     </p>
                   </div>
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-2 flex-wrap justify-end">
+                    {/* Payment/trial status */}
+                    {(() => {
+                      const trialStatus = getTrialStatus(user);
+                      if (trialStatus === "paid") {
+                        return (
+                          <Badge className="bg-green-500/20 text-green-400 border-green-500/30">
+                            <DollarSign className="w-3 h-3 mr-1" /> Pago
+                          </Badge>
+                        );
+                      }
+                      if (trialStatus === "expired") {
+                        return (
+                          <Badge className="bg-destructive/20 text-destructive border-destructive/30">
+                            <AlertTriangle className="w-3 h-3 mr-1" /> Expirado - Pgto pendente
+                          </Badge>
+                        );
+                      }
+                      return (
+                        <Badge className="bg-gold/20 text-gold border-gold/30">
+                          Teste grátis
+                        </Badge>
+                      );
+                    })()}
+
+                    {/* Approval */}
                     {user.is_approved ? (
-                      <>
-                        <Badge className="bg-green-500/20 text-green-400 border-green-500/30">Aprovado</Badge>
-                        <Button
-                          variant="outline"
-                          size="sm"
-                          onClick={() => toggleApproval(user.user_id, false)}
-                          className="text-red-400 border-red-400/30"
-                        >
-                          Revogar
-                        </Button>
-                      </>
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => toggleApproval(user.user_id, false)}
+                        className="text-red-400 border-red-400/30"
+                      >
+                        Revogar
+                      </Button>
                     ) : (
                       <Button
                         variant="hero"
