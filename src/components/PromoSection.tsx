@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Clock, Tag, Check, Copy } from "lucide-react";
+import { Clock, Check } from "lucide-react";
 
 const PROMO_END = new Date();
 PROMO_END.setHours(PROMO_END.getHours() + 23, 59, 59);
