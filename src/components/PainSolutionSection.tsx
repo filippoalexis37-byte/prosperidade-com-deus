@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { BookX, HelpCircle, Brain, XCircle, BookOpen, Sun, Map, GraduationCap } from "lucide-react";
+import { BookX, HelpCircle, Brain, XCircle, BookOpen, Sun, Map, GraduationCap, ArrowRight } from "lucide-react";
 
 const pains = [
   { icon: BookX, text: "Leem a Bíblia mas não entendem o significado de alguns versículos" },
@@ -9,10 +9,10 @@ const pains = [
 ];
 
 const solutions = [
-  { icon: BookOpen, text: "Devocionais diários com explicações simples" },
-  { icon: Sun, text: "Versículo do dia com reflexão" },
-  { icon: Map, text: "Planos espirituais guiados" },
-  { icon: GraduationCap, text: "Ensinamentos práticos baseados na Bíblia" },
+  { icon: BookOpen, text: "Devocionais diários com explicações simples", highlight: "Novos todos os dias" },
+  { icon: Sun, text: "Versículo do dia com reflexão profunda", highlight: "Meditação guiada" },
+  { icon: Map, text: "Planos espirituais para ansiedade, medo e propósito", highlight: "+10 planos" },
+  { icon: GraduationCap, text: "Ensinamentos práticos baseados na Bíblia", highlight: "Fácil de entender" },
 ];
 
 const PainSolutionSection = () => {
@@ -31,8 +31,10 @@ const PainSolutionSection = () => {
 
         <div className="grid sm:grid-cols-2 gap-4 mb-8">
           {pains.map((item, i) => (
-            <div key={i} className="flex items-start gap-4 bg-card border border-border rounded-xl p-5">
-              <item.icon className="w-5 h-5 text-destructive shrink-0 mt-0.5" />
+            <div key={i} className="flex items-start gap-4 bg-destructive/5 border border-destructive/20 rounded-xl p-5 hover:border-destructive/40 transition-colors">
+              <div className="w-8 h-8 rounded-lg bg-destructive/10 flex items-center justify-center shrink-0">
+                <item.icon className="w-4 h-4 text-destructive" />
+              </div>
               <p className="text-muted-foreground text-sm leading-relaxed">{item.text}</p>
             </div>
           ))}
@@ -53,16 +55,18 @@ const PainSolutionSection = () => {
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto mb-10">
             O Prosperidade com Deus foi criado para ajudar você a entender melhor a Palavra e aplicar os ensinamentos bíblicos na sua vida.
           </p>
-          <p className="text-muted-foreground text-base mb-8">
-            Dentro do aplicativo você encontra:
-          </p>
         </div>
 
         <div className="grid sm:grid-cols-2 gap-4 mb-10">
           {solutions.map((item, i) => (
-            <div key={i} className="flex items-start gap-4 bg-card border border-gold/20 rounded-xl p-5">
-              <item.icon className="w-5 h-5 text-gold shrink-0 mt-0.5" />
-              <p className="text-foreground text-sm leading-relaxed">{item.text}</p>
+            <div key={i} className="flex items-start gap-4 bg-card border border-gold/20 rounded-xl p-5 hover:border-gold/40 hover:glow-gold transition-all duration-300">
+              <div className="w-10 h-10 rounded-xl bg-gradient-gold flex items-center justify-center shrink-0">
+                <item.icon className="w-5 h-5 text-primary-foreground" />
+              </div>
+              <div>
+                <p className="text-foreground text-sm leading-relaxed font-medium">{item.text}</p>
+                <span className="text-gold text-xs mt-1 inline-block">{item.highlight}</span>
+              </div>
             </div>
           ))}
         </div>
@@ -73,8 +77,9 @@ const PainSolutionSection = () => {
 
         <div className="text-center">
           <a href="/auth">
-            <Button variant="hero" size="lg" className="text-lg px-10 py-6">
+            <Button variant="hero" size="lg" className="text-lg px-10 py-6 group">
               Começar meu teste grátis
+              <ArrowRight className="w-5 h-5 ml-1 group-hover:translate-x-1 transition-transform" />
             </Button>
           </a>
         </div>

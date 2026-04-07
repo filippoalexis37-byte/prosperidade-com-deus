@@ -7,28 +7,28 @@ import {
 
 const faqs = [
   {
-    q: "O que é o programa Prosperidade com Deus?",
-    a: "É um programa completo que combina ensinamentos bíblicos sobre finanças com ferramentas práticas como devocional diário, leitura bíblica guiada e módulos semanais para transformar sua vida financeira e espiritual.",
+    q: "O que é o Prosperidade com Deus?",
+    a: "É um aplicativo cristão completo com devocionais diários, versículo do dia com reflexão e planos espirituais guiados para ajudar você a fortalecer sua fé e caminhar com Deus todos os dias.",
   },
   {
-    q: "Como funciona o cupom OFF50?",
-    a: "Basta acessar o checkout e aplicar o cupom OFF50 para receber 50% de desconto. O valor cai de R$ 29,90 para apenas R$ 14,90. A oferta é por tempo limitado!",
+    q: "Como funciona o teste grátis de 7 dias?",
+    a: "Ao se cadastrar, você recebe acesso completo ao app por 7 dias sem nenhuma cobrança. Se gostar, a assinatura continua por apenas R$14,90/mês. Se não quiser continuar, basta cancelar antes dos 7 dias.",
   },
   {
     q: "Preciso ter conhecimento bíblico prévio?",
-    a: "Não! O programa foi feito para todos os níveis. Você terá acesso à Bíblia completa dentro do app e os conteúdos são explicados de forma clara e acessível.",
+    a: "Não! O app foi feito para todos os níveis. Os devocionais e reflexões são escritos de forma clara e acessível para qualquer pessoa que queira se aproximar de Deus.",
   },
   {
-    q: "Por quanto tempo terei acesso ao conteúdo?",
-    a: "Após a compra, você terá acesso completo a todos os módulos, devocionais e funcionalidades do aplicativo pelo período da sua assinatura.",
+    q: "O que está incluído na assinatura?",
+    a: "Devocionais diários com reflexão, versículo do dia, planos espirituais sobre ansiedade, medo, propósito e disciplina, além de funcionalidades como sequência de leitura e medalhas de crescimento.",
   },
   {
-    q: "Como acesso o conteúdo após a compra?",
-    a: "Após a confirmação do pagamento, você receberá um e-mail com as instruções de acesso. Basta criar sua conta e começar sua jornada de transformação!",
+    q: "Posso usar no celular e no computador?",
+    a: "Sim! O Prosperidade com Deus funciona em qualquer dispositivo com navegador — celular, tablet ou computador. Basta acessar e fazer login.",
   },
   {
     q: "Posso cancelar a qualquer momento?",
-    a: "Sim, você pode cancelar sua assinatura a qualquer momento. Sem burocracia, sem perguntas.",
+    a: "Sim, você pode cancelar sua assinatura a qualquer momento. Sem burocracia, sem perguntas. Você continua com acesso até o fim do período pago.",
   },
 ];
 
