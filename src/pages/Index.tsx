@@ -1,3 +1,4 @@
+// UPDATED AT: 2026-04-20 22:31:00 - FORCING SYNC
 import Navbar from "@/components/Navbar";
 import ParticleBackground from "@/components/ParticleBackground";
 import HeroSection from "@/components/HeroSection";
@@ -32,7 +33,6 @@ const Index = () => {
       
       <JourneySection />
 
-      {/* Adding these from previous version as they add value and match the theme */}
       <AppDemoSection />
       <ModulesSection />
       <VerseOfDaySection />

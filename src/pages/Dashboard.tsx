@@ -1,3 +1,4 @@
+// UPDATED AT: 2026-04-20 22:31:00 - FORCING SYNC
 import React, { useState, useEffect } from 'react';
 import { useAuth } from "@/contexts/AuthContext";
 import { useStreak } from "@/hooks/useStreak";
@@ -33,6 +34,8 @@ const Dashboard: React.FC = () => {
       fetchData();
     }
   }, [isApproved, user]);
+
+  useEffect(() => {
     const newStars = Array.from({ length: 40 }).map(() => ({
       sz: Math.random() * 1.8 + 0.4,
       left: Math.random() * 100,
@@ -43,6 +46,7 @@ const Dashboard: React.FC = () => {
     setStars(newStars);
   }, []);
 
+  const openModal = (key: string) => {
     if (key === 'daily') {
       if (dailyDevotional) {
         setModalData({
@@ -56,7 +60,6 @@ const Dashboard: React.FC = () => {
       return;
     }
 
-    // Content mapping based on user's HTML
     const content: Record<string, any> = {
       deserto1: {
         label: '🏜 O Deserto — Fase 01',
@@ -81,7 +84,7 @@ const Dashboard: React.FC = () => {
       }
     };
     
-    setModalData(content[key] || content['dev1']); // Fallback to dev1 if not found
+    setModalData(content[key] || content['dev1']);
   };
 
   const renderHome = () => (
