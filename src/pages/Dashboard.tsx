@@ -1,329 +1,255 @@
+import React, { useState, useEffect } from 'react';
 import { useAuth } from "@/contexts/AuthContext";
-import { useEffect, useState } from "react";
-import { supabase } from "@/integrations/supabase/client";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { useNavigate } from "react-router-dom";
-import AppLayout from "@/components/AppLayout";
-import { BookOpen, Award, Heart, Compass, Flame, CalendarDays, Lock, CheckCircle2, Sparkles } from "lucide-react";
-import TrialBanner from "@/components/TrialBanner";
-import NotificationSettings from "@/components/NotificationSettings";
 import { useStreak } from "@/hooks/useStreak";
 import { useSubscription } from "@/hooks/useSubscription";
+import { supabase } from "@/integrations/supabase/client";
+import LoadingScreen from "@/components/LoadingScreen";
+import AppBottomNav, { ScreenType } from "@/components/AppBottomNav";
+import ReaderModal from "@/components/ReaderModal";
+import DesertView from "@/components/DesertView";
+import DevotionalsView from "@/components/DevotionalsView";
+import PersistenceView from "@/components/PersistenceView";
+import SubscriptionView from "@/components/SubscriptionView";
 
-const CHECKOUT_URL = "https://www.ggcheckout.com/checkout/v3/9Mi4R0FainnLnX9wzmRn";
-
-interface DailyDevotional {
-  title: string;
-  content: string;
-  verse: string;
-  verse_reference: string;
-  comfort_word: string;
-  apostle: string;
-}
-
-const Dashboard = () => {
-  const { user, profile, isApproved } = useAuth();
-  const navigate = useNavigate();
+const Dashboard: React.FC = () => {
+  const { profile, isApproved, user } = useAuth();
   const { currentStreak } = useStreak();
   const { status, daysLeft } = useSubscription();
-  const [devotional, setDevotional] = useState<DailyDevotional | null>(null);
-  const [progress, setProgress] = useState<Record<number, boolean>>({});
-  const [medals, setMedals] = useState<{ name: string; icon: string; earned_at: string }[]>([]);
-  const [loadingDevotional, setLoadingDevotional] = useState(true);
+  const [activeScreen, setActiveScreen] = useState<ScreenType>('home');
+  const [modalData, setModalData] = useState<any>(null);
+  const [stars, setStars] = useState<{ sz: number; left: number; top: number; dur: number; del: number }[]>([]);
+  const [dailyDevotional, setDailyDevotional] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (!isApproved) return;
-
     const fetchData = async () => {
       const today = new Date().toISOString().split("T")[0];
-
-      const [devRes, progRes, medRes] = await Promise.all([
-        supabase.from("daily_devotionals").select("*").eq("devotional_date", today).single(),
-        supabase.from("user_progress").select("week_number, completed").eq("user_id", user!.id),
-        supabase.from("user_medals").select("earned_at, medal_id, medals(name, icon)").eq("user_id", user!.id),
-      ]);
-
-      if (devRes.data) {
-        setDevotional(devRes.data);
-      } else {
-        try {
-          const { data, error } = await supabase.functions.invoke("generate-devotional");
-          if (data && !error) setDevotional(data);
-        } catch (e) {
-          console.error("Failed to generate devotional:", e);
-        }
-      }
-      setLoadingDevotional(false);
-
-      if (progRes.data) {
-        const map: Record<number, boolean> = {};
-        progRes.data.forEach((p) => (map[p.week_number] = p.completed));
-        setProgress(map);
-      }
-
-      if (medRes.data) {
-        setMedals(medRes.data.map((m: any) => ({
-          name: m.medals?.name || "",
-          icon: m.medals?.icon || "🏅",
-          earned_at: m.earned_at,
-        })));
-      }
+      const { data } = await supabase.from("daily_devotionals").select("*").eq("devotional_date", today).single();
+      if (data) setDailyDevotional(data);
+      setLoading(false);
     };
 
-    fetchData();
+    if (isApproved && user) {
+      fetchData();
+    }
   }, [isApproved, user]);
+    const newStars = Array.from({ length: 40 }).map(() => ({
+      sz: Math.random() * 1.8 + 0.4,
+      left: Math.random() * 100,
+      top: Math.random() * 100,
+      dur: 2 + Math.random() * 3,
+      del: Math.random() * 4,
+    }));
+    setStars(newStars);
+  }, []);
+
+    if (key === 'daily') {
+      if (dailyDevotional) {
+        setModalData({
+          label: '🌅 Devocional do Dia',
+          title: dailyDevotional.title,
+          verse: `"${dailyDevotional.verse}" — ${dailyDevotional.verse_reference}`,
+          body: dailyDevotional.content,
+          prayer: dailyDevotional.comfort_word || 'Senhor, obrigado por este dia e por Tua palavra que me sustenta. Amém.'
+        });
+      }
+      return;
+    }
+
+    // Content mapping based on user's HTML
+    const content: Record<string, any> = {
+      deserto1: {
+        label: '🏜 O Deserto — Fase 01',
+        title: 'Quando tudo parece estar dando errado ao mesmo tempo',
+        verse: '"Ainda que eu ande pelo vale da sombra da morte, não temerei mal algum, porque tu estás comigo; o teu bordão e o teu cajado me consolam." — Salmos 23:4',
+        body: "Há momentos em que parece que o céu está de bronze. As orações sobem e parece que não chegam em lugar nenhum. As portas se fecham, os problemas se multiplicam e a sensação é de que Deus desapareceu.\n\nEsse é o deserto.\n\nMas preste atenção: o deserto na Bíblia nunca é ponto de chegada — é caminho de passagem. O próprio Jesus, antes de iniciar seu ministério público, passou 40 dias no deserto. Paulo passou anos na Arábia depois da conversão. João passou pela Ilha de Patmos.\n\nO deserto não é sinal de que Deus o abandonou. É sinal de que Ele está te preparando para algo que você ainda não consegue carregar.\n\nNo deserto você aprende o que não aprende em nenhum outro lugar: que Deus é suficiente. Não o dinheiro. Não os relacionamentos. Não o reconhecimento. Deus e somente Deus.\n\nQuando Israel estava no deserto, Deus enviou maná todos os dias — só o suficiente para aquele dia. Não dava para guardar para o dia seguinte. Era uma lição forçada de dependência diária.\n\nVocê está no deserto? Então saiba: Deus está com você. Ele não é o arquiteto do seu sofrimento, mas Ele é o Mestre do seu aprendizado dentro dele.",
+        prayer: 'Senhor, estou no deserto e minhas forças estão acabando. Mas escolho crer que Tu estás comigo mesmo quando não consigo Te sentir. Renova minhas forças, Pai. Que este tempo difícil me aproxime de Ti e não me afaste. Em nome de Jesus, amém.'
+      },
+      dev1: {
+        label: '📖 Devocional — Dia 1',
+        title: 'Quando tudo começa no silêncio',
+        verse: '"Depois do fogo, uma voz mansa e delicada. E, quando Elias a ouviu, cobriu o rosto com o seu manto." — 1 Reis 19:12-13',
+        body: "Elias estava esgotado depois de uma das maiores vitórias espirituais da história. Havia desafiado 450 profetas de Baal sozinho — e ganhou. Fogo desceu do céu. Israel se ajoelhou.\n\nE então ele fugiu, com medo de uma mulher.\n\nNo deserto, pediu para morrer. E Deus não apareceu em vento poderoso, terremoto ou fogo — apareceu na voz suave e delicada.\n\nO silêncio é a linguagem de Deus para almas esgotadas.\n\nEm um mundo de notificações, reuniões, demandas e barulho constante, aprender a ouvir a voz suave de Deus é o maior treinamento espiritual que existe.\n\nHoje, antes de qualquer coisa, faça silêncio. Não para rezar uma oração bonita. Apenas para ouvir.",
+        prayer: 'Senhor, eu quero ouvir Tua voz hoje. Silencio minha mente agitada e me disponho a ouvir o que Tu tens para mim. Fala, Senhor, que teu servo ouve. Amém.'
+      },
+      meditacao: {
+        label: '🕊 Meditação Guiada',
+        title: 'Silêncio e Presença de Deus',
+        verse: '"Aquietai-vos e sabei que eu sou Deus." — Salmos 46:10',
+        body: "Feche os olhos por um momento.\n\nRespire fundo pelo nariz... segure... e solte lentamente pela boca.\n\nDeixe o peso do dia cair dos seus ombros. Não há nada que você precise resolver agora mesmo. Não há decisão urgente que não possa esperar 5 minutos.\n\nApenas esteja aqui, diante de Deus.\n\nEle não precisa da sua performance. Não precisa das suas palavras elaboradas. Não precisa da sua liturgia perfeita.\n\nEle quer você — exatamente como você está agora.\n\nCom o cansaço. Com as dúvidas. Com as perguntas sem resposta.\n\nDiga simplesmente: \"Pai, estou aqui.\" E fique em silêncio por alguns minutos. Deixe-O falar ao coração.",
+        prayer: 'Pai, aquieto meu coração diante de Ti. Não tenho palavras elaboradas hoje — só tenho a minha presença. Recebo a Tua. Que este momento de silêncio seja mais poderoso do que horas de atividade religiosa. Em Cristo, amém.'
+      }
+    };
+    
+    setModalData(content[key] || content['dev1']); // Fallback to dev1 if not found
+  };
+
+  const renderHome = () => (
+    <div className="animate-in fade-in slide-in-from-right-8 duration-350">
+      <div className="bg-[linear-gradient(180deg,#1a0d3a_0%,#0d0a18_60%,#09080A_100%)] px-6 pt-14 pb-8 relative overflow-hidden">
+        <div className="stars absolute inset-0 pointer-events-none">
+          {stars.map((s, i) => (
+            <div
+              key={i}
+              className="star absolute rounded-full bg-gold animate-[twinkle_linear_infinite]"
+              style={{
+                width: s.sz,
+                height: s.sz,
+                left: `${s.left}%`,
+                top: `${s.top}%`,
+                animationDuration: `${s.dur}s`,
+                animationDelay: `${s.del}s`,
+              }}
+            />
+          ))}
+        </div>
+        <div className="absolute top-[-80px] left-1/2 -translate-x-1/2 w-[340px] h-[340px] rounded-full bg-gold/18 blur-[100px] pointer-events-none" />
+        
+        <span className="text-[13px] font-medium text-[#F8EED8]/50 tracking-[1px] uppercase relative z-10 block mb-1">
+          Bom dia, {profile?.full_name?.split(' ')[0] || 'Fiel'}
+        </span>
+        <h1 className="font-serif text-[26px] font-bold text-[#F8EED8] leading-[1.2] relative z-10 mb-1.5">
+          Sua Jornada com<br />
+          <span className="bg-gradient-to-br from-[#F2D47B] to-[#C9A455] bg-clip-text text-transparent">Deus começa aqui</span>
+        </h1>
+        <p className="text-[12px] text-[#F8EED8]/50 relative z-10 mb-5">
+          {new Date().toLocaleDateString('pt-BR', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })}
+        </p>
+
+        <div className="bg-white/6 backdrop-blur-[10px] border border-gold/25 rounded-[20px] p-5 relative z-10 mb-1 cursor-pointer active:scale-[0.98] transition-transform" onClick={() => openModal('daily')}>
+          <div className="text-[10px] font-semibold tracking-[2px] text-gold uppercase mb-2.5 flex items-center gap-1.5">
+            🌅 {dailyDevotional ? 'Versículo do Dia' : 'Carregando...'}
+          </div>
+          <p className="font-serif text-[17px] italic text-[#F8EED8] leading-[1.6] mb-2.5">
+            {dailyDevotional ? `"${dailyDevotional.verse}"` : '"Aproximai-vos de Deus e Ele se aproximará de vós."'}
+          </p>
+          <p className="text-[11px] font-semibold text-gold tracking-[1px]">
+            — {dailyDevotional ? dailyDevotional.verse_reference : 'Tiago 4:8'}
+          </p>
+        </div>
+      </div>
+
+      <div className="flex gap-1.5 px-5 pt-4">
+        {[1, 2, 3, 4, 5, 6, 7].map((d) => (
+          <div 
+            key={d} 
+            className={`flex-1 h-[5px] rounded-[3px] ${d < 5 ? 'bg-gradient-to-r from-[#7A5C1E] to-[#C9A455]' : d === 5 ? 'bg-gradient-to-r from-[#C9A455] to-[#F2D47B] shadow-[0_0_8px_rgba(201,164,85,0.5)]' : 'bg-[#231F2E]'}`} 
+          />
+        ))}
+      </div>
+
+      <div className="px-5 pt-4 flex items-center gap-4">
+        <div className="relative w-[70px] h-[70px] flex-shrink-0">
+          <svg width="70" height="70" viewBox="0 0 70 70" className="rotate-[-90deg]">
+            <circle cx="35" cy="35" r="30" fill="none" stroke="#231F2E" strokeWidth="5" />
+            <circle 
+              cx="35" cy="35" r="30" fill="none" 
+              stroke="url(#goldGrad)" strokeWidth="5" strokeLinecap="round" 
+              strokeDasharray="188" strokeDashoffset={188 - (188 * (currentStreak / 30))} 
+              className="transition-all duration-1000"
+            />
+            <defs>
+              <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="#F2D47B" />
+                <stop offset="100%" stopColor="#7A5C1E" />
+              </linearGradient>
+            </defs>
+          </svg>
+          <div className="absolute inset-0 flex flex-col items-center justify-center">
+            <div className="font-serif text-base font-bold bg-gradient-to-br from-[#F2D47B] to-[#C9A455] bg-clip-text text-transparent leading-none">
+              {currentStreak}
+            </div>
+            <div className="text-[8px] text-[#F8EED8]/50 tracking-[1px]">dias</div>
+          </div>
+        </div>
+        <div className="text-left">
+          <h3 className="font-serif text-sm font-semibold text-[#F8EED8] mb-1">Sequência Atual 🔥</h3>
+          <p className="text-xs text-[#F8EED8]/50 leading-relaxed">Você está no {currentStreak}° dia consecutivo. Continue firme — Deus vê cada esforço seu.</p>
+        </div>
+      </div>
+
+      <div className="px-5 pt-6 pb-3 flex items-center justify-between">
+        <h2 className="font-serif text-base font-semibold text-[#F8EED8]">Acesso Rápido</h2>
+      </div>
+
+      <div className="grid grid-cols-2 gap-3 px-5">
+        <div className="bg-[#1A1720]/95 border border-white/[0.15] rounded-[18px] p-[18px_16px] cursor-pointer active:scale-[0.96] transition-all relative overflow-hidden" onClick={() => setActiveScreen('desert')}>
+          <div className="absolute top-[-20px] right-[-20px] w-20 h-20 rounded-full bg-gold/10 blur-[20px] pointer-events-none" />
+          <span className="text-[28px] mb-2.5 block">🏜</span>
+          <div className="font-serif text-[13px] font-semibold text-[#F8EED8] mb-1">O Deserto</div>
+          <div className="text-[11px] text-[#F8EED8]/50 leading-relaxed">Supere as fases difíceis da vida</div>
+        </div>
+        <div className="bg-[#1A1720]/95 border border-white/[0.15] rounded-[18px] p-[18px_16px] cursor-pointer active:scale-[0.96] transition-all relative overflow-hidden" onClick={() => setActiveScreen('devocionais')}>
+          <div className="absolute top-[-20px] right-[-20px] w-20 h-20 rounded-full bg-gold/10 blur-[20px] pointer-events-none" />
+          <span className="text-[28px] mb-2.5 block">📖</span>
+          <div className="font-serif text-[13px] font-semibold text-[#F8EED8] mb-1">Devocionais</div>
+          <div className="text-[11px] text-[#F8EED8]/50 leading-relaxed">365 palavras transformadoras</div>
+        </div>
+        <div className="bg-[#1A1720]/95 border border-white/[0.15] rounded-[18px] p-[18px_16px] cursor-pointer active:scale-[0.96] transition-all relative overflow-hidden" onClick={() => setActiveScreen('persistencia')}>
+          <div className="absolute top-[-20px] right-[-20px] w-20 h-20 rounded-full bg-gold/10 blur-[20px] pointer-events-none" />
+          <span className="text-[28px] mb-2.5 block">🔥</span>
+          <div className="font-serif text-[13px] font-semibold text-[#F8EED8] mb-1">Persistência</div>
+          <div className="text-[11px] text-[#F8EED8]/50 leading-relaxed">Mantenha-se firme em qualquer situação</div>
+        </div>
+        <div className="bg-[#1A1720]/95 border border-white/[0.15] rounded-[18px] p-[18px_16px] cursor-pointer active:scale-[0.96] transition-all relative overflow-hidden" onClick={() => openModal('meditacao')}>
+          <div className="absolute top-[-20px] right-[-20px] w-20 h-20 rounded-full bg-gold/10 blur-[20px] pointer-events-none" />
+          <span className="text-[28px] mb-2.5 block">🕊</span>
+          <div className="font-serif text-[13px] font-semibold text-[#F8EED8] mb-1">Meditação</div>
+          <div className="text-[11px] text-[#F8EED8]/50 leading-relaxed">Silêncio e presença de Deus</div>
+        </div>
+      </div>
+
+      <div className="mx-5 mt-4 bg-gradient-to-br from-[#1C0A3A] to-[#0E0A22] border border-purpleL/40 rounded-[18px] p-[18px_20px] flex items-center gap-3.5 cursor-pointer active:scale-[0.98] transition-all" onClick={() => setActiveScreen('desert')}>
+        <span className="text-[36px] flex-shrink-0">🏜</span>
+        <div className="text-left">
+          <h3 className="font-serif text-[14px] font-semibold text-[#F8EED8] mb-1">Você está no deserto?</h3>
+          <p className="text-[12px] text-[#F8EED8]/50 leading-relaxed">Mensagens especiais para quem está passando por tempo difícil</p>
+        </div>
+        <span className="ml-auto text-purpleL text-lg">›</span>
+      </div>
+      <div className="h-10" />
+    </div>
+  );
+
+  const renderActiveScreen = () => {
+    switch (activeScreen) {
+      case 'home': return renderHome();
+      case 'desert': return <DesertView onOpenPhase={(id) => openModal(id)} />;
+      case 'devocionais': return <DevotionalsView currentStreak={currentStreak} onOpenDevotion={(id) => openModal(id)} />;
+      case 'persistencia': return <PersistenceView onOpenPrinciple={(id) => openModal(id)} />;
+      case 'plano': return <SubscriptionView status={status} daysLeft={daysLeft} />;
+      default: return renderHome();
+    }
+  };
 
   if (!isApproved) {
     return (
-      <AppLayout>
-        <div className="flex flex-col items-center justify-center min-h-[60vh] text-center px-4">
-          <div className="text-6xl mb-6">⏳</div>
-          <h2 className="font-serif text-2xl font-bold text-foreground mb-4">Aguardando Aprovação</h2>
-          <p className="text-muted-foreground max-w-md">
-            Seu cadastro foi recebido com sucesso! O administrador precisa aprovar seu acesso. Você receberá uma notificação em breve.
-          </p>
-        </div>
-      </AppLayout>
+      <div className="min-h-screen bg-[#09080A] flex flex-col items-center justify-center text-center px-4 font-sans text-[#F8EED8]">
+        <div className="text-6xl mb-6">⏳</div>
+        <h2 className="font-serif text-2xl font-bold mb-4">Aguardando Aprovação</h2>
+        <p className="text-[#F8EED8]/50 max-w-md">
+          Seu cadastro foi recebido com sucesso! O administrador precisa aprovar seu acesso. Você receberá uma notificação em breve.
+        </p>
+      </div>
     );
   }
 
-  const completedWeeks = Object.values(progress).filter(Boolean).length;
-  const progressPercent = (completedWeeks / 4) * 100;
-
-  // Determine next action
-  const getNextWeek = () => {
-    for (let i = 1; i <= 4; i++) {
-      if (!progress[i]) return i;
-    }
-    return null;
-  };
-  const nextWeek = getNextWeek();
-
-  // Calculate challenge day based on trial_started_at
-  const challengeDay = profile?.trial_started_at
-    ? Math.min(30, Math.max(1, Math.ceil((Date.now() - new Date(profile.trial_started_at).getTime()) / (24 * 60 * 60 * 1000))))
-    : 1;
-
-  const getProgressMessage = () => {
-    if (progressPercent === 0) return "Você está no início da sua transformação.";
-    if (progressPercent < 50) return "Você está avançando! Continue firme. 💪";
-    if (progressPercent < 100) return "Você está quase completando seu ciclo! 🔥";
-    return "Parabéns! Você completou a transformação! 🏆";
-  };
-
   return (
-    <AppLayout>
-      <div className="space-y-6">
-        {/* Welcome */}
-        <div>
-          <h1 className="font-serif text-2xl font-bold text-foreground">
-            Olá, <span className="text-gradient-gold">{profile?.full_name || "Irmão(ã)"}</span>
-          </h1>
-          <p className="text-muted-foreground text-sm mt-1">Que Deus abençoe seu dia de estudo!</p>
-        </div>
+    <div className="min-h-screen bg-[#09080A] max-w-[430px] mx-auto relative overflow-hidden font-sans text-[#F8EED8]">
+      <LoadingScreen />
+      
+      <main className="h-full overflow-y-auto pb-[calc(80px+env(safe-area-inset-bottom,20px))] scrollbar-none">
+        {renderActiveScreen()}
+      </main>
 
-        {/* ===== BLOCO 1: Streak + Dia + Trial ===== */}
-        <div className="grid grid-cols-3 gap-3">
-          {/* Streak */}
-          <Card className="bg-card border-border">
-            <CardContent className="flex flex-col items-center justify-center py-4 px-2">
-              <Flame className={`w-6 h-6 mb-1 ${currentStreak > 0 ? "text-orange-400" : "text-muted-foreground"}`} />
-              <span className="font-serif text-xl font-bold text-foreground">
-                {currentStreak}
-              </span>
-              <span className="text-[10px] text-muted-foreground text-center leading-tight">
-                {currentStreak > 0 ? `dia${currentStreak > 1 ? "s" : ""} seguido${currentStreak > 1 ? "s" : ""}` : "Comece hoje!"}
-              </span>
-            </CardContent>
-          </Card>
+      <AppBottomNav activeScreen={activeScreen} onScreenChange={setActiveScreen} />
 
-          {/* Dia do desafio */}
-          <Card className="bg-card border-border">
-            <CardContent className="flex flex-col items-center justify-center py-4 px-2">
-              <CalendarDays className="w-6 h-6 text-gold mb-1" />
-              <span className="font-serif text-xl font-bold text-foreground">{challengeDay}/30</span>
-              <span className="text-[10px] text-muted-foreground text-center leading-tight">dia do desafio</span>
-            </CardContent>
-          </Card>
-
-          {/* Dias restantes trial */}
-          <Card className={`border ${status === "trial" ? "bg-gold/5 border-gold/20" : "bg-card border-border"}`}>
-            <CardContent className="flex flex-col items-center justify-center py-4 px-2">
-              <Sparkles className={`w-6 h-6 mb-1 ${status === "paid" ? "text-green-400" : "text-gold"}`} />
-              <span className="font-serif text-xl font-bold text-foreground">
-                {status === "paid" ? "∞" : daysLeft}
-              </span>
-              <span className="text-[10px] text-muted-foreground text-center leading-tight">
-                {status === "paid" ? "acesso total" : `dia${daysLeft > 1 ? "s" : ""} de teste`}
-              </span>
-            </CardContent>
-          </Card>
-        </div>
-
-        {/* Streak = 0 motivational */}
-        {currentStreak === 0 && (
-          <div className="text-center py-2">
-            <p className="text-sm text-muted-foreground italic">✨ Comece hoje sua sequência espiritual.</p>
-          </div>
-        )}
-
-        {/* Trial banner with upgrade CTA */}
-        <TrialBanner />
-
-        {/* ===== BLOCO 2: CTA PRINCIPAL ===== */}
-        <Button
-          variant="hero"
-          size="lg"
-          className="w-full py-6 text-base"
-          onClick={() => navigate(nextWeek ? "/modulos" : "/devocional")}
-        >
-          {completedWeeks === 0
-            ? "📖 Começar Hoje"
-            : nextWeek
-            ? `🔥 Continuar Dia ${challengeDay}`
-            : "🙏 Ver Devocional"}
-        </Button>
-
-        {/* Quick Actions */}
-        <div className="grid grid-cols-4 gap-3">
-          {[
-            { icon: BookOpen, label: "Bíblia", path: "/biblia", color: "text-gold" },
-            { icon: Heart, label: "Devocional", path: "/devocional", color: "text-red-400" },
-            { icon: Compass, label: "Módulos", path: "/modulos", color: "text-blue-400" },
-            { icon: Award, label: "Medalhas", path: "/medalhas", color: "text-gold" },
-          ].map((item) => (
-            <Card
-              key={item.path}
-              className="cursor-pointer hover:border-gold/30 transition-all bg-card border-border"
-              onClick={() => navigate(item.path)}
-            >
-              <CardContent className="flex flex-col items-center justify-center py-4">
-                <item.icon className={`w-6 h-6 ${item.color} mb-1`} />
-                <span className="text-[11px] font-medium text-foreground">{item.label}</span>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-
-        {/* ===== BLOCO 4: GAMIFICAÇÃO 30 DIAS ===== */}
-        <Card className="bg-card border-border">
-          <CardHeader className="pb-3">
-            <CardTitle className="font-serif text-lg">30 Dias de Transformação</CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            {/* Progress bar */}
-            <div>
-              <div className="flex justify-between text-sm mb-2">
-                <span className="text-muted-foreground">{completedWeeks} de 4 semanas</span>
-                <span className="font-bold text-gold">{progressPercent.toFixed(0)}%</span>
-              </div>
-              <div className="w-full bg-secondary rounded-full h-3 overflow-hidden">
-                <div
-                  className="h-full rounded-full bg-gradient-gold transition-all duration-700"
-                  style={{ width: `${progressPercent}%` }}
-                />
-              </div>
-            </div>
-
-            {/* Week indicators */}
-            <div className="grid grid-cols-4 gap-2">
-              {[1, 2, 3, 4].map((week) => {
-                const completed = progress[week];
-                const unlocked = week === 1 || progress[week - 1];
-                return (
-                  <div
-                    key={week}
-                    className={`flex flex-col items-center gap-1 p-3 rounded-xl border transition-all ${
-                      completed
-                        ? "bg-gold/10 border-gold/30"
-                        : unlocked
-                        ? "bg-card border-border"
-                        : "bg-secondary/30 border-border opacity-50"
-                    }`}
-                  >
-                    {completed ? (
-                      <CheckCircle2 className="w-6 h-6 text-green-400" />
-                    ) : unlocked ? (
-                      <span className="text-lg font-bold text-gold">{week}</span>
-                    ) : (
-                      <Lock className="w-5 h-5 text-muted-foreground" />
-                    )}
-                    <span className="text-[10px] text-muted-foreground">Sem {week}</span>
-                  </div>
-                );
-              })}
-            </div>
-
-            {/* Dynamic message */}
-            <p className="text-sm text-center text-muted-foreground italic">
-              {getProgressMessage()}
-            </p>
-          </CardContent>
-        </Card>
-
-        {/* Daily Devotional */}
-        <Card className="bg-card border-border">
-          <CardHeader>
-            <CardTitle className="font-serif text-lg flex items-center gap-2">
-              <Heart className="w-5 h-5 text-red-400" />
-              Palavra do Dia
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            {loadingDevotional ? (
-              <p className="text-muted-foreground animate-pulse">Carregando devocional...</p>
-            ) : devotional ? (
-              <div className="space-y-3">
-                <h3 className="font-serif text-lg font-bold text-foreground">{devotional.title}</h3>
-                {devotional.apostle && (
-                  <Badge variant="outline" className="text-gold border-gold/30">{devotional.apostle}</Badge>
-                )}
-                <p className="text-muted-foreground text-sm leading-relaxed line-clamp-3">{devotional.content}</p>
-                <blockquote className="border-l-2 border-gold/50 pl-3 italic text-foreground/80 text-sm">
-                  "{devotional.verse}" — {devotional.verse_reference}
-                </blockquote>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  className="w-full"
-                  onClick={() => navigate("/devocional")}
-                >
-                  Ler devocional completo
-                </Button>
-              </div>
-            ) : (
-              <p className="text-muted-foreground">Nenhum devocional disponível hoje.</p>
-            )}
-          </CardContent>
-        </Card>
-
-        {/* Medals */}
-        {medals.length > 0 && (
-          <Card className="bg-card border-border">
-            <CardHeader>
-              <CardTitle className="font-serif text-lg flex items-center gap-2">
-                <Award className="w-5 h-5 text-gold" />
-                Suas Medalhas
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="flex gap-4 flex-wrap">
-                {medals.map((m, i) => (
-                  <div key={i} className="flex flex-col items-center gap-1">
-                    <span className="text-3xl">{m.icon}</span>
-                    <span className="text-xs text-muted-foreground">{m.name}</span>
-                  </div>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
-        )}
-        {/* Notification Settings */}
-        <NotificationSettings />
-      </div>
-    </AppLayout>
+      <ReaderModal
+        isOpen={!!modalData}
+        onClose={() => setModalData(null)}
+        {...(modalData || {})}
+      />
+    </div>
   );
 };
 

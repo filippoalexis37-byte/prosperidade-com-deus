@@ -1,66 +1,76 @@
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
+import React, { useState } from 'react';
+import { Plus } from 'lucide-react';
 
 const faqs = [
   {
-    q: "O que é o Prosperidade com Deus?",
-    a: "É um aplicativo cristão completo com devocionais diários, versículo do dia com reflexão e planos espirituais guiados para ajudar você a fortalecer sua fé e caminhar com Deus todos os dias.",
-  },
-  {
-    q: "Como funciona o teste grátis de 7 dias?",
-    a: "Ao se cadastrar, você recebe acesso completo ao app por 7 dias sem nenhuma cobrança. Se gostar, a assinatura continua por apenas R$14,90/mês. Se não quiser continuar, basta cancelar antes dos 7 dias.",
-  },
-  {
     q: "Preciso ter conhecimento bíblico prévio?",
-    a: "Não! O app foi feito para todos os níveis. Os devocionais e reflexões são escritos de forma clara e acessível para qualquer pessoa que queira se aproximar de Deus.",
+    a: "Não. O programa foi criado para quem está começando e para quem já tem caminhada. O conteúdo é organizado de forma progressiva — você vai entendendo cada conceito no momento certo, sem jargões complicados.",
   },
   {
-    q: "O que está incluído na assinatura?",
-    a: "Devocionais diários com reflexão, versículo do dia, planos espirituais sobre ansiedade, medo, propósito e disciplina, além de funcionalidades como sequência de leitura e medalhas de crescimento.",
+    q: "Como funciona o cupom OFF50?",
+    a: "Ao clicar em \"Quero Transformar Minha Vida\", você será levado à página de checkout. No campo de cupom, insira o código OFF50 para aplicar o desconto adicional. O desconto é aplicado automaticamente no valor final.",
   },
   {
-    q: "Posso usar no celular e no computador?",
-    a: "Sim! O Prosperidade com Deus funciona em qualquer dispositivo com navegador — celular, tablet ou computador. Basta acessar e fazer login.",
+    q: "Por quanto tempo terei acesso?",
+    a: "O acesso é vitalício. Uma vez que você adquire o programa, ele é seu para sempre — incluindo todas as atualizações e novos conteúdos que forem adicionados sem custo extra.",
   },
   {
-    q: "Posso cancelar a qualquer momento?",
-    a: "Sim, você pode cancelar sua assinatura a qualquer momento. Sem burocracia, sem perguntas. Você continua com acesso até o fim do período pago.",
+    q: "E se eu não gostar? Tenho garantia?",
+    a: "Sim. Você tem 7 dias de garantia total. Se por qualquer motivo não ficar satisfeito, basta enviar um e-mail e devolvemos 100% do seu investimento. Sem perguntas, sem burocracia.",
+  },
+  {
+    q: "Como acesso o conteúdo após a compra?",
+    a: "Imediatamente após a compra, você recebe por e-mail o acesso à plataforma e ao aplicativo. Tudo disponível 24h por dia, em qualquer dispositivo — celular, tablet ou computador.",
+  },
+  {
+    q: "O programa serve para qualquer denominação?",
+    a: "Sim. O conteúdo é baseado 100% na Bíblia e nos ensinamentos dos apóstolos, sem viés denominacional. Católicos, evangélicos, presbiterianos, batistas e outras denominações já utilizaram o programa com excelentes resultados.",
   },
 ];
 
 const FAQSection = () => {
-  return (
-    <section className="py-20 md:py-28 bg-background relative">
-      <div className="container mx-auto px-4 md:px-8 max-w-3xl">
-        <div className="text-center mb-14">
-          <span className="text-primary font-medium tracking-widest uppercase text-sm">
-            Dúvidas
-          </span>
-          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mt-3 mb-4">
-            Perguntas <span className="text-gradient-gold">Frequentes</span>
-          </h2>
-        </div>
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
 
-        <Accordion type="single" collapsible className="space-y-3">
+  return (
+    <section className="py-24 px-6 bg-background">
+      <div className="max-w-3xl mx-auto">
+        <p className="text-center text-gold text-xs font-bold uppercase tracking-[0.3em] mb-4">
+          Dúvidas frequentes
+        </p>
+        <h2 className="font-serif text-4xl md:text-6xl text-cream text-center mb-16 leading-tight">
+          Perguntas <strong className="text-gold font-bold">Frequentes</strong>
+        </h2>
+
+        <div className="space-y-4">
           {faqs.map((faq, i) => (
-            <AccordionItem
+            <div
               key={i}
-              value={`faq-${i}`}
-              className="bg-card border border-border rounded-xl px-6 data-[state=open]:border-primary/30 transition-colors"
+              className="border-b border-white/10 overflow-hidden"
             >
-              <AccordionTrigger className="text-left font-medium text-foreground hover:text-primary py-5">
-                {faq.q}
-              </AccordionTrigger>
-              <AccordionContent className="text-muted-foreground leading-relaxed pb-5">
-                {faq.a}
-              </AccordionContent>
-            </AccordionItem>
+              <button
+                onClick={() => setOpenIndex(openIndex === i ? null : i)}
+                className="w-full py-6 flex items-center justify-between gap-6 text-left group"
+              >
+                <h3 className="font-serif text-xl md:text-2xl font-bold text-cream group-hover:text-gold transition-colors">
+                  {faq.q}
+                </h3>
+                <div className={`flex-shrink-0 w-8 h-8 rounded-full border border-gold/30 flex items-center justify-center text-gold transition-transform duration-300 ${openIndex === i ? 'rotate-45' : ''}`}>
+                  <Plus className="w-5 h-5" />
+                </div>
+              </button>
+              
+              <div
+                className={`transition-all duration-400 ease-in-out ${
+                  openIndex === i ? 'max-h-[300px] opacity-100 pb-8' : 'max-h-0 opacity-0'
+                }`}
+              >
+                <p className="text-muted-foreground text-sm md:text-base leading-relaxed">
+                  {faq.a}
+                </p>
+              </div>
+            </div>
           ))}
-        </Accordion>
+        </div>
       </div>
     </section>
   );

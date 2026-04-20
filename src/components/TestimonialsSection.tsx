@@ -1,90 +1,91 @@
-import { Star, Quote } from "lucide-react";
+import React from 'react';
 
 const testimonials = [
   {
     name: "Maria S.",
-    role: "Mãe e Professora",
-    text: "O devocional diário me ajudou a criar uma rotina com Deus. Agora começo todos os dias com paz e direção. Minha família inteira sentiu a diferença!",
+    role: "Empresária, SP",
+    text: "Esse programa me ensinou que fé não é passividade — é ação com Deus. Hoje tenho paz para tomar decisões financeiras que antes me paralisavam de medo.",
     stars: 5,
+    initial: "M"
   },
   {
     name: "Carlos M.",
-    role: "Empresário",
-    text: "Eu lia a Bíblia mas não conseguia entender muitas passagens. Com as reflexões do app, tudo ficou mais claro. Minha fé nunca foi tão forte!",
+    role: "Professor, MG",
+    text: "Eu vivia em dívidas e achava que não merecia prosperidade. Depois da semana 3, entendi minha identidade em Cristo. Em 6 meses, quitei tudo.",
     stars: 5,
+    initial: "C"
   },
   {
     name: "Ana Paula R.",
-    role: "Estudante",
-    text: "Os planos espirituais sobre ansiedade me ajudaram em um dos momentos mais difíceis da minha vida. Senti a presença de Deus todos os dias.",
+    role: "Autônoma, RJ",
+    text: "O devocional diário mudou minha manhã inteira. Comecei o dia com Deus e minha produtividade, meu casamento e minha saúde melhoraram juntos.",
     stars: 5,
+    initial: "A"
   },
   {
     name: "João Pedro L.",
-    role: "Pastor",
-    text: "Recomendo para toda a minha congregação. O versículo do dia com reflexão é uma ferramenta poderosa para quem quer crescer espiritualmente.",
+    role: "Engenheiro, RS",
+    text: "Nunca imaginei que a Bíblia falava tanto sobre finanças. Aprendi a honrar a Deus com o dízimo e as portas de oportunidades simplesmente se abriram.",
     stars: 5,
+    initial: "J"
+  },
+  {
+    name: "Patricia O.",
+    role: "Enfermeira, BA",
+    text: "Estava no deserto espiritual há 3 anos. O programa me mostrou que o deserto é passagem, não destino. Hoje minha fé está mais firme do que nunca.",
+    stars: 5,
+    initial: "P"
+  },
+  {
+    name: "Roberto A.",
+    role: "Comerciante, CE",
+    text: "Apliquei os princípios da semana 4 no meu negócio. Coloquei Deus no centro, cortei o que não tinha propósito e faturei 40% mais no trimestre seguinte.",
+    stars: 5,
+    initial: "R"
   },
 ];
 
 const TestimonialsSection = () => {
   return (
-    <section className="py-20 md:py-28 bg-gradient-dark relative overflow-hidden">
-      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
-      <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
+    <section className="py-24 px-6 bg-background">
+      <div className="max-w-6xl mx-auto">
+        <p className="text-center text-gold text-xs font-bold uppercase tracking-[0.3em] mb-4">
+          Depoimentos
+        </p>
+        <h2 className="font-serif text-4xl md:text-6xl text-cream text-center mb-6 leading-tight">
+          Vidas que já foram <strong className="text-gold font-bold">Transformadas</strong>
+        </h2>
+        <p className="text-muted-foreground text-center text-lg max-w-2xl mx-auto mb-20 leading-relaxed">
+          Essas histórias reais mostram o que acontece quando você coloca Deus verdadeiramente no centro da sua vida.
+        </p>
 
-      <div className="container mx-auto px-4 md:px-8 max-w-6xl">
-        <div className="text-center mb-14">
-          <span className="text-primary font-medium tracking-widest uppercase text-sm">
-            Depoimentos
-          </span>
-          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mt-3 mb-4">
-            Vidas <span className="text-gradient-gold">Transformadas</span>
-          </h2>
-          <p className="text-muted-foreground max-w-xl mx-auto">
-            Veja como o app está impactando a vida espiritual de milhares de pessoas.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {testimonials.map((t, i) => (
             <div
               key={i}
-              className="bg-card border border-border rounded-2xl p-6 md:p-8 relative group hover:border-primary/30 transition-colors duration-300"
+              className="group relative bg-card/40 border border-white/5 rounded-3xl p-10 hover:border-gold/30 transition-all duration-500 hover:-translate-y-2"
             >
-              <Quote className="absolute top-6 right-6 w-8 h-8 text-primary/10 group-hover:text-primary/20 transition-colors" />
-
-              <div className="flex gap-1 mb-4">
-                {Array.from({ length: t.stars }).map((_, s) => (
-                  <Star
-                    key={s}
-                    className="w-4 h-4 fill-primary text-primary"
-                  />
-                ))}
+              <div className="absolute top-6 right-8 font-serif text-6xl text-gold/5 group-hover:text-gold/10 transition-colors">
+                "
               </div>
 
-              <p className="text-secondary-foreground leading-relaxed mb-6 italic">
+              <div className="flex gap-1 text-gold text-xs mb-6">
+                {"★".repeat(t.stars)}
+              </div>
+
+              <p className="font-serif text-lg italic text-cream/90 leading-relaxed mb-8">
                 "{t.text}"
               </p>
 
-              <div>
-                <p className="font-semibold text-foreground">{t.name}</p>
-                <p className="text-muted-foreground text-sm">{t.role}</p>
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 rounded-full bg-gradient-gold flex items-center justify-center font-serif text-xl font-bold text-primary-foreground shadow-lg">
+                  {t.initial}
+                </div>
+                <div>
+                  <div className="font-bold text-cream text-sm">{t.name}</div>
+                  <div className="text-[10px] text-muted-foreground uppercase tracking-widest">{t.role}</div>
+                </div>
               </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Social proof bar */}
-        <div className="mt-12 flex flex-wrap justify-center gap-8 md:gap-12">
-          {[
-            { number: "4.9/5", label: "Avaliação média" },
-            { number: "2.800+", label: "Usuários ativos" },
-            { number: "98%", label: "Recomendam" },
-          ].map((stat, i) => (
-            <div key={i} className="text-center">
-              <p className="font-serif text-2xl md:text-3xl font-bold text-gradient-gold">{stat.number}</p>
-              <p className="text-muted-foreground text-sm mt-1">{stat.label}</p>
             </div>
           ))}
         </div>

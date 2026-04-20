@@ -1,83 +1,106 @@
-import heroBg from "@/assets/hero-bg.jpg";
-import { Button } from "@/components/ui/button";
-import { ArrowDown, Users, Star, Shield } from "lucide-react";
 import { useEffect, useState } from "react";
+import { Button } from "@/components/ui/button";
 
 const HeroSection = () => {
-  const [count, setCount] = useState(2847);
+  const [count, setCount] = useState(0);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setCount((prev) => prev + Math.floor(Math.random() * 3));
-    }, 8000);
-    return () => clearInterval(interval);
+    const target = 12847;
+    const duration = 2000;
+    const step = target / (duration / 16);
+    let start = 0;
+    
+    const timer = setInterval(() => {
+      start += step;
+      if (start >= target) {
+        setCount(target);
+        clearInterval(timer);
+      } else {
+        setCount(Math.floor(start));
+      }
+    }, 16);
+    
+    return () => clearInterval(timer);
   }, []);
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background image */}
-      <div className="absolute inset-0">
-        <img
-          src={heroBg}
-          alt="Pessoa no topo da montanha ao nascer do sol"
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/60 to-background" />
+    <section className="relative min-h-screen flex flex-col items-center justify-center text-center px-6 py-32 overflow-hidden z-10">
+      {/* Radial glow behind hero text */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] rounded-full bg-[radial-gradient(circle,rgba(201,169,110,0.12)_0%,transparent_70%)] pointer-events-none" />
+
+      {/* Cross SVG */}
+      <div className="mb-6 opacity-0 animate-[fadeUp_1s_0.2s_forwards]">
+        <svg className="w-16 h-16 mx-auto" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <line x1="30" y1="4" x2="30" y2="56" stroke="url(#cg)" strokeWidth="3" strokeLinecap="round"/>
+          <line x1="8" y1="20" x2="52" y2="20" stroke="url(#cg)" strokeWidth="3" strokeLinecap="round"/>
+          <defs>
+            <linearGradient id="cg" x1="0" y1="0" x2="60" y2="60" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stopColor="#F0D080"/>
+              <stop offset="100%" stopColor="#8B6914"/>
+            </linearGradient>
+          </defs>
+        </svg>
       </div>
 
-      {/* Content */}
-      <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">
-        {/* Social proof badge */}
-        <div className="inline-flex items-center gap-2 bg-card/80 backdrop-blur-sm border border-gold/20 rounded-full px-5 py-2 mb-8 animate-fade-in">
-          <div className="flex -space-x-2">
-            <div className="w-6 h-6 rounded-full bg-gradient-gold flex items-center justify-center text-[10px] font-bold text-primary-foreground">M</div>
-            <div className="w-6 h-6 rounded-full bg-gold-dark flex items-center justify-center text-[10px] font-bold text-primary-foreground">J</div>
-            <div className="w-6 h-6 rounded-full bg-gold-light flex items-center justify-center text-[10px] font-bold text-primary-foreground">A</div>
+      <div className="inline-flex items-center gap-2 bg-gold/10 border border-gold/30 rounded-full px-6 py-2 text-[10px] md:text-xs font-bold text-gold uppercase tracking-[0.2em] mb-8 opacity-0 animate-[fadeUp_1s_0.3s_forwards]">
+        <span>✦ Como se conectar com Deus através da fé ✦</span>
+      </div>
+
+      <h1 className="font-serif text-5xl md:text-8xl font-light text-cream leading-[1.1] mb-4 opacity-0 animate-[fadeUp_1s_0.5s_forwards]">
+        A fé que <em className="italic text-gold font-normal">transforma</em><br />
+        <strong className="block font-bold bg-gradient-gold bg-clip-text text-transparent">tudo em você</strong>
+      </h1>
+
+      <div className="opacity-0 animate-[fadeUp_1s_0.7s_forwards]">
+        <p className="font-serif text-lg md:text-2xl italic text-cream/70 max-w-xl mx-auto mb-2 leading-relaxed">
+          "Aproximai-vos de Deus e ele se aproximará de vós."
+        </p>
+        <p className="text-xs font-bold tracking-[0.2em] text-gold uppercase mb-8">
+          Tiago 4:8
+        </p>
+      </div>
+
+      <p className="text-base md:text-lg text-muted-foreground max-w-lg mx-auto leading-relaxed mb-10 opacity-0 animate-[fadeUp_1s_0.9s_forwards]">
+        Descubra como fortalecer sua conexão com Deus todos os dias, curar sua identidade, 
+        restaurar suas emoções e viver a prosperidade que Ele preparou para você.
+      </p>
+
+      <div className="flex flex-col sm:flex-row gap-4 justify-center opacity-0 animate-[fadeUp_1s_1.1s_forwards]">
+        <a href="#oferta">
+          <Button size="lg" className="h-16 px-10 rounded-full bg-gradient-gold text-primary-foreground font-bold text-lg shadow-[0_0_40px_rgba(201,169,110,0.4)] hover:scale-105 transition-transform">
+            ✦ Quero me Conectar com Deus
+          </Button>
+        </a>
+        <a href="#pilares">
+          <Button variant="outline" size="lg" className="h-16 px-10 rounded-full border-gold/40 text-gold hover:bg-gold/10 text-lg transition-all">
+            Saiba Mais
+          </Button>
+        </a>
+      </div>
+
+      <div className="flex flex-wrap justify-center gap-10 md:gap-16 mt-16 opacity-0 animate-[fadeUp_1s_1.3s_forwards]">
+        <div className="text-center">
+          <div className="font-serif text-3xl md:text-5xl font-bold bg-gradient-gold bg-clip-text text-transparent leading-none">
+            {count.toLocaleString("pt-BR")}+
           </div>
-          <span className="text-muted-foreground text-sm">
-            <strong className="text-gold">{count.toLocaleString("pt-BR")}+</strong> pessoas já começaram sua jornada
-          </span>
+          <div className="text-[10px] text-muted-foreground uppercase tracking-widest mt-2">Vidas Transformadas</div>
         </div>
-
-        <p className="text-gold-light font-sans text-sm tracking-[0.3em] uppercase mb-6 animate-fade-in">
-          Aplicativo Cristão de Devocionais
-        </p>
-        <h1 className="font-serif text-4xl md:text-6xl lg:text-7xl font-bold leading-tight mb-8">
-          <span className="text-foreground">O aplicativo cristão para</span>
-          <br />
-          <span className="text-gradient-gold">fortalecer sua fé</span>
-          <span className="text-foreground"> todos os dias</span>
-        </h1>
-        <p className="text-muted-foreground text-lg md:text-xl max-w-2xl mx-auto mb-10 font-light leading-relaxed">
-          Devocionais diários, versículo do dia e planos espirituais para
-          ansiedade, medo, propósito e crescimento com Deus.
-        </p>
-
-        <div className="flex flex-col items-center gap-4">
-          <a href="/auth">
-            <Button variant="hero" size="lg" className="text-lg px-10 py-7 animate-pulse-subtle">
-              Começar 7 dias grátis
-            </Button>
-          </a>
-
-          {/* Trust signals */}
-          <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-muted-foreground text-sm mt-2">
-            <span className="flex items-center gap-1.5">
-              <Shield className="w-4 h-4 text-gold" /> Sem cobrança hoje
-            </span>
-            <span className="flex items-center gap-1.5">
-              <Star className="w-4 h-4 text-gold" /> Avaliação 4.9/5
-            </span>
-            <span className="flex items-center gap-1.5">
-              <Users className="w-4 h-4 text-gold" /> Cancele quando quiser
-            </span>
-          </div>
+        <div className="text-center">
+          <div className="font-serif text-3xl md:text-5xl font-bold bg-gradient-gold bg-clip-text text-transparent leading-none">365</div>
+          <div className="text-[10px] text-muted-foreground uppercase tracking-widest mt-2">Devocionais Diários</div>
+        </div>
+        <div className="text-center">
+          <div className="font-serif text-3xl md:text-5xl font-bold bg-gradient-gold bg-clip-text text-transparent leading-none">7</div>
+          <div className="text-[10px] text-muted-foreground uppercase tracking-widest mt-2">Dias de Garantia</div>
         </div>
       </div>
 
-      {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-        <ArrowDown className="w-6 h-6 text-gold" />
+      {/* Scroll hint */}
+      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-0 animate-[fadeUp_1s_1.8s_forwards]">
+        <span className="text-[10px] text-muted-foreground uppercase tracking-[0.2em]">Role para baixo</span>
+        <div className="w-6 h-10 border-2 border-gold/30 rounded-full relative">
+          <div className="w-1 h-2 bg-gold rounded-full absolute left-1/2 top-2 -translate-x-1/2 animate-[scrollAnim_2s_infinite]" />
+        </div>
       </div>
     </section>
   );

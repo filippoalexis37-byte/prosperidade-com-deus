@@ -1,30 +1,55 @@
+import Navbar from "@/components/Navbar";
+import ParticleBackground from "@/components/ParticleBackground";
 import HeroSection from "@/components/HeroSection";
-import PainSolutionSection from "@/components/PainSolutionSection";
-import ModulesSection from "@/components/ModulesSection";
-import AppDemoSection from "@/components/AppDemoSection";
-import VerseOfDaySection from "@/components/VerseOfDaySection";
-import PromoSection from "@/components/PromoSection";
-import PlanSection from "@/components/PlanSection";
-import CTASection from "@/components/CTASection";
+import PillarsSection from "@/components/PillarsSection";
+import VerseBreak from "@/components/VerseBreak";
+import JourneySection from "@/components/JourneySection";
 import TestimonialsSection from "@/components/TestimonialsSection";
+import OfferSection from "@/components/OfferSection";
 import FAQSection from "@/components/FAQSection";
+import FinalCTA from "@/components/FinalCTA";
 import Footer from "@/components/Footer";
 import ExitIntentPopup from "@/components/ExitIntentPopup";
+import VerseOfDaySection from "@/components/VerseOfDaySection";
+import AppDemoSection from "@/components/AppDemoSection";
+import ModulesSection from "@/components/ModulesSection";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background selection:bg-gold/30">
+      <Navbar />
+      <ParticleBackground />
       <ExitIntentPopup />
+      
       <HeroSection />
-      <PainSolutionSection />
-      <ModulesSection />
+      
+      <PillarsSection />
+      
+      <VerseBreak 
+        quote="Porque <strong>eu sei os planos que tenho para vocês</strong>, diz o SENHOR, planos de fazê-los prosperar e não de causar dano, planos de dar a vocês <strong>esperança e um futuro</strong>."
+        reference="Jeremias 29:11"
+      />
+      
+      <JourneySection />
+
+      {/* Adding these from previous version as they add value and match the theme */}
       <AppDemoSection />
+      <ModulesSection />
       <VerseOfDaySection />
-      <PromoSection />
-      <PlanSection />
+      
+      <VerseBreak 
+        quote="Buscai primeiro o <strong>Reino de Deus</strong> e a sua justiça, e todas essas coisas vos serão <strong>acrescentadas</strong>."
+        reference="Mateus 6:33"
+      />
+      
       <TestimonialsSection />
+      
+      <OfferSection />
+      
       <FAQSection />
-      <CTASection />
+      
+      <FinalCTA />
+      
       <Footer />
     </div>
   );

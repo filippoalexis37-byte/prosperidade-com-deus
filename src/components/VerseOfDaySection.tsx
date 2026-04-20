@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { BookOpen, RefreshCw, Check } from "lucide-react";
+import { BookOpen, RefreshCw, Check, Sparkles, Quote } from "lucide-react";
 
 const verses = [
   {
@@ -66,79 +66,85 @@ const VerseOfDaySection = () => {
 
   return (
     <section className="py-24 px-6 bg-background relative overflow-hidden">
-      {/* Glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full bg-gold/5 blur-3xl pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] rounded-full bg-gold/5 blur-[150px] pointer-events-none" />
 
-      <div className="relative max-w-2xl mx-auto text-center">
-        <p className="text-gold font-sans text-sm tracking-[0.3em] uppercase mb-4">
-          Palavra de Deus
+      <div className="relative max-w-4xl mx-auto text-center">
+        <p className="text-gold text-[10px] font-bold tracking-[0.4em] uppercase mb-4">
+          Palavra de Vida
         </p>
-        <h2 className="font-serif text-4xl md:text-5xl font-bold text-foreground mb-4">
+        <h2 className="font-serif text-4xl md:text-6xl font-bold text-cream mb-8 leading-tight">
           Versículo do <span className="text-gradient-gold">Dia</span>
         </h2>
-        <p className="text-muted-foreground text-lg mb-10">
-          Receba uma palavra de Deus para fortalecer sua fé hoje.
+        <p className="text-muted-foreground text-lg md:text-xl max-w-2xl mx-auto mb-12 leading-relaxed">
+          Receba uma promessa de Deus para fortalecer sua fé e alinhar seu coração hoje.
         </p>
 
         {!isRevealed ? (
-          <Button
-            variant="hero"
-            size="lg"
-            className="text-lg px-10 py-6"
-            onClick={revealVerse}
-          >
-            <BookOpen className="w-5 h-5 mr-2" />
-            Ver Versículo do Dia
-          </Button>
+          <div className="relative inline-block group">
+            <div className="absolute -inset-1 bg-gradient-gold rounded-2xl blur opacity-30 group-hover:opacity-100 transition duration-1000 group-hover:duration-200" />
+            <Button
+              variant="hero"
+              size="lg"
+              className="relative text-2xl px-12 py-10 bg-card/60 border-gold/30 hover:bg-gold/10 hover:border-gold shadow-2xl transition-all duration-300 rounded-3xl"
+              onClick={revealVerse}
+            >
+              <Sparkles className="w-6 h-6 mr-3 text-gold" />
+              Revelar Promessa de Hoje
+            </Button>
+          </div>
         ) : currentVerse ? (
-          <div className="space-y-6 animate-in fade-in duration-500">
-            <Card className="bg-card border-gold/20 shadow-2xl">
-              <CardContent className="p-8 md:p-10">
+          <div className="space-y-10 animate-in fade-in zoom-in-95 duration-700">
+            <Card className="bg-card/40 backdrop-blur-xl border-gold/20 shadow-[0_0_50px_-12px_rgba(212,175,55,0.2)] overflow-hidden rounded-[2.5rem]">
+              <CardContent className="p-10 md:p-16 relative">
+                <Quote className="absolute top-10 right-10 w-20 h-20 text-gold/5" />
+                
                 {/* Icon */}
-                <div className="flex justify-center mb-6">
-                  <div className="w-12 h-12 rounded-full bg-gold/10 flex items-center justify-center">
-                    <BookOpen className="w-6 h-6 text-gold" />
+                <div className="flex justify-center mb-8">
+                  <div className="w-16 h-16 rounded-2xl bg-gradient-gold flex items-center justify-center shadow-lg">
+                    <BookOpen className="w-8 h-8 text-primary-foreground" />
                   </div>
                 </div>
 
                 {/* Verse */}
-                <blockquote className="font-serif text-xl md:text-2xl text-foreground leading-relaxed mb-4">
+                <blockquote className="font-serif text-2xl md:text-4xl text-cream leading-tight mb-6 font-bold">
                   "{currentVerse.text}"
                 </blockquote>
 
-                <p className="text-gold font-medium text-sm tracking-wide mb-8">
+                <p className="text-gold-light font-black text-lg tracking-[0.2em] mb-10 uppercase">
                   — {currentVerse.reference}
                 </p>
 
                 {/* Divider */}
-                <div className="w-16 h-[1px] bg-gold/30 mx-auto mb-6" />
+                <div className="w-24 h-1 bg-gradient-to-r from-transparent via-gold/40 to-transparent mx-auto mb-10" />
 
                 {/* Reflection */}
-                <p className="text-muted-foreground text-base leading-relaxed italic">
+                <p className="text-muted-foreground text-lg md:text-xl leading-relaxed italic font-medium max-w-2xl mx-auto">
                   {currentVerse.reflection}
                 </p>
               </CardContent>
             </Card>
 
-            <Button
-              variant="outline"
-              size="lg"
-              className="gap-2 rounded-xl border-gold/30 hover:border-gold/60 hover:bg-gold/5"
-              onClick={newVerse}
-            >
-              <RefreshCw className="w-4 h-4" />
-              Ver outro versículo
-            </Button>
+            <div className="flex flex-col items-center gap-6">
+              <Button
+                variant="outline"
+                size="lg"
+                className="gap-3 rounded-2xl border-gold/30 hover:border-gold/60 hover:bg-gold/10 text-gold font-bold px-8 py-6"
+                onClick={newVerse}
+              >
+                <RefreshCw className="w-5 h-5" />
+                Ver outro versículo
+              </Button>
 
-            <div className="pt-4">
-              <a href="/auth">
-                <Button variant="hero" size="lg" className="text-lg px-10 py-6">
-                  Começar minha jornada espiritual
-                </Button>
-              </a>
-              <div className="flex flex-wrap justify-center gap-4 mt-4 text-muted-foreground text-xs">
-                <span className="flex items-center gap-1"><Check className="w-3.5 h-3.5 text-gold" /> 7 dias grátis</span>
-                <span className="flex items-center gap-1"><Check className="w-3.5 h-3.5 text-gold" /> Sem cobrança hoje</span>
+              <div className="pt-6">
+                <a href="#oferta">
+                  <Button className="h-16 px-12 rounded-full bg-gradient-gold text-primary-foreground font-bold text-xl shadow-[0_0_50px_rgba(201,169,110,0.5)] hover:scale-105 transition-transform animate-pulse-subtle">
+                    Quero Começar Agora
+                  </Button>
+                </a>
+                <div className="flex flex-wrap justify-center gap-6 mt-6 text-gold-light/60 text-[10px] font-black uppercase tracking-widest">
+                  <span className="flex items-center gap-2"><Check className="w-4 h-4 text-gold" /> Acesso Imediato</span>
+                  <span className="flex items-center gap-2"><Check className="w-4 h-4 text-gold" /> 7 Dias de Garantia</span>
+                </div>
               </div>
             </div>
           </div>
