@@ -47,8 +47,8 @@ const HeroSection = () => {
       </div>
 
       <h1 className="font-serif text-5xl md:text-8xl font-light text-cream leading-[1.1] mb-4 opacity-0 animate-[fadeUp_1s_0.5s_forwards]">
-        A fé que <em className="italic text-gold font-normal">transforma</em><br />
-        <strong className="block font-bold bg-gradient-gold bg-clip-text text-transparent">tudo em você</strong>
+        O segredo bíblico para <br />
+        <strong className="block font-bold bg-gradient-gold bg-clip-text text-transparent">destravar sua vida</strong>
       </h1>
 
       <div className="opacity-0 animate-[fadeUp_1s_0.7s_forwards]">
@@ -60,13 +60,16 @@ const HeroSection = () => {
         </p>
       </div>
 
-      <p className="text-base md:text-lg text-muted-foreground max-w-lg mx-auto leading-relaxed mb-10 opacity-0 animate-[fadeUp_1s_0.9s_forwards]">
-        Descubra como fortalecer sua conexão com Deus todos os dias, curar sua identidade, 
-        restaurar suas emoções e viver a prosperidade que Ele preparou para você.
+      <p className="text-base md:text-lg text-muted-foreground max-w-lg mx-auto leading-relaxed mb-4 opacity-0 animate-[fadeUp_1s_0.9s_forwards]">
+        Recupere sua identidade, restaure suas finanças e viva a prosperidade do Reino 
+        com o primeiro App de transformação guiada pela Bíblia.
+      </p>
+      <p className="text-gold font-black text-sm uppercase tracking-[0.2em] mb-10 opacity-0 animate-[fadeUp_1s_1.0s_forwards]">
+        🎁 COMECE AGORA COM 7 DIAS GRÁTIS
       </p>
 
       <div className="flex flex-col sm:flex-row gap-4 justify-center opacity-0 animate-[fadeUp_1s_1.1s_forwards]">
-        <a href="#oferta">
+        <a href="https://go.hotmart.com/E98949409P?dp=1">
           <Button size="lg" className="h-16 px-10 rounded-full bg-gradient-gold text-primary-foreground font-bold text-lg shadow-[0_0_40px_rgba(201,169,110,0.4)] hover:scale-105 transition-transform">
             ✦ Quero me Conectar com Deus
           </Button>

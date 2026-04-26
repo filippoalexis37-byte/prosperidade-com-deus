@@ -22,11 +22,14 @@ const FinalCTA = () => {
           não vive carente e não negocia seus valores.
         </p>
         
-        <a href="#oferta">
+        <a href="https://go.hotmart.com/E98949409P?dp=1">
           <Button size="lg" className="h-16 px-12 rounded-full bg-gradient-gold text-primary-foreground font-bold text-xl shadow-[0_0_50px_rgba(201,169,110,0.5)] hover:scale-105 transition-transform">
             ✦ Começar Minha Transformação
           </Button>
         </a>
+        <p className="mt-6 text-gold/60 text-[10px] uppercase font-bold tracking-widest">
+          🛡️ Garantia Blindada de 7 Dias • Teste Sem Risco
+        </p>
       </div>
     </section>
   );

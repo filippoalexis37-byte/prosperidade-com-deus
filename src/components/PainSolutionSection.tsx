@@ -76,7 +76,7 @@ const PainSolutionSection = () => {
         </div>
 
         <div className="text-center">
-          <a href="/auth">
+          <a href="https://go.hotmart.com/E98949409P?dp=1">
             <Button variant="hero" size="lg" className="text-xl px-12 py-8 group bg-gradient-gold shadow-gold">
               Quero Minha Transformação
               <ArrowRight className="w-6 h-6 ml-2 group-hover:translate-x-2 transition-transform" />

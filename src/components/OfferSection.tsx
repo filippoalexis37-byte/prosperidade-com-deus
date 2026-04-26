@@ -72,12 +72,34 @@ const OfferSection = () => {
             </div>
 
             <div className="mb-12">
-              <div className="text-lg text-white/30 line-through mb-1">De R$ 97,00</div>
-              <div className="font-serif text-6xl md:text-8xl font-bold bg-gradient-gold bg-clip-text text-transparent leading-none">
+              <div className="text-lg text-white/30 line-through mb-1">De R$ 197,00 por apenas</div>
+              <div className="font-serif text-7xl md:text-9xl font-bold bg-gradient-gold bg-clip-text text-transparent leading-none">
                 R$ 29,90
               </div>
-              <div className="text-sm text-muted-foreground mt-4 font-medium">
-                ou 12x de R$ 2,99 • Acesso imediato e vitalício
+              <div className="inline-block mt-6 px-6 py-2 bg-gold/10 border border-gold/30 rounded-full">
+                <span className="text-gold font-black uppercase tracking-tighter text-sm md:text-base">
+                  ⚠️ PAGAMENTO ÚNICO • SEM MENSALIDADES • ACESSO VITALÍCIO
+                </span>
+              </div>
+            </div>
+
+            {/* Value Stack - Bônus para aumentar o desejo */}
+            <div className="max-w-md mx-auto text-left space-y-4 mb-12 bg-white/5 p-6 rounded-2xl border border-white/10">
+              <p className="text-gold font-bold text-sm uppercase tracking-widest text-center mb-4">O que você leva hoje:</p>
+              <div className="flex items-center gap-3 text-cream/90 text-sm">
+                <span className="text-gold text-lg">✓</span> <span>Acesso Vitalício ao App Completo</span>
+              </div>
+              <div className="flex items-center gap-3 text-cream/90 text-sm">
+                <span className="text-gold text-lg">✓</span> <span>365 Dias de Devocionais Premium</span>
+              </div>
+              <div className="flex items-center gap-3 text-cream/90 text-sm">
+                <span className="text-gold text-lg">✓</span> <span>Módulo: Finanças à Luz da Bíblia</span>
+              </div>
+              <div className="flex items-center gap-3 text-cream/90 text-sm">
+                <span className="text-gold text-lg">✓</span> <span>Comunidade Exclusiva de Alunos</span>
+              </div>
+              <div className="mt-4 pt-4 border-t border-white/10 text-center text-xs text-gold/60 font-bold uppercase tracking-tighter">
+                🎁 TESTE POR 7 DIAS GRÁTIS - RISCO ZERO
               </div>
             </div>
 
@@ -94,11 +116,17 @@ const OfferSection = () => {
               </div>
             </button>
 
-            <a href="/auth" className="block">
+            <a href="https://go.hotmart.com/E98949409P?dp=1" className="block">
               <Button className="w-full h-20 rounded-full bg-gradient-gold text-primary-foreground text-xl font-black shadow-[0_0_50px_rgba(201,169,110,0.5)] hover:scale-[1.02] transition-transform animate-pulse-subtle">
                 ✦ Quero Transformar Minha Vida Agora
               </Button>
             </a>
+            
+            <div className="mt-4">
+              <a href="/auth" className="text-gold/60 hover:text-gold text-sm font-bold uppercase tracking-widest transition-colors">
+                Ou clique aqui para testar 7 dias grátis
+              </a>
+            </div>
 
             <div className="flex flex-wrap justify-center gap-6 md:gap-10 mt-10">
               {[

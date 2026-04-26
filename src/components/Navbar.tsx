@@ -7,11 +7,16 @@ const Navbar = () => {
       <div className="font-serif text-xl md:text-2xl font-semibold text-gold tracking-wider">
         ✝ <span className="text-cream ml-1">Conexão com Deus</span>
       </div>
-      <a href="#oferta">
-        <Button className="rounded-full bg-gradient-gold text-primary-foreground font-bold text-xs md:text-sm px-6 shadow-[0_0_20px_rgba(201,169,110,0.3)] hover:scale-105 transition-transform">
-          Começar Agora
-        </Button>
-      </a>
+      <div className="flex items-center gap-4">
+        <a href="/auth" className="text-cream/70 hover:text-gold text-xs md:text-sm font-bold uppercase tracking-widest transition-colors hidden sm:block">
+          Entrar
+        </a>
+        <a href="https://go.hotmart.com/E98949409P?dp=1">
+          <Button className="rounded-full bg-gradient-gold text-primary-foreground font-bold text-xs md:text-sm px-6 shadow-[0_0_20px_rgba(201,169,110,0.3)] hover:scale-105 transition-transform">
+            Começar Agora
+          </Button>
+        </a>
+      </div>
     </nav>
   );
 };
