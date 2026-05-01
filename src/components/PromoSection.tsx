@@ -103,9 +103,9 @@ const PromoSection = () => {
             </div>
 
             <div className="mb-10">
-              <p className="text-primary-foreground/60 text-lg line-through font-bold mb-1">R$ 29,90</p>
-              <h3 className="text-6xl md:text-7xl font-serif font-black drop-shadow-md mb-2">R$ 14,90</h3>
-              <p className="text-primary-foreground/80 font-medium italic">Pagamento único ou mensal (conforme plano)</p>
+              <p className="text-primary-foreground/60 text-lg line-through font-bold mb-1">R$ 49,90</p>
+              <h3 className="text-6xl md:text-7xl font-serif font-black drop-shadow-md mb-2">R$ 29,90</h3>
+              <p className="text-primary-foreground/80 font-medium italic">Assinatura mensal — cancele quando quiser</p>
             </div>
 
             <a href="/auth">

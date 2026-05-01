@@ -45,7 +45,7 @@ const UpgradeGate = ({ children }: UpgradeGateProps) => {
         {/* Pricing */}
         <div className="space-y-1">
           <p className="font-serif text-4xl md:text-5xl font-bold text-gradient-gold">
-            R$ 14,90<span className="text-lg font-normal text-muted-foreground">/mês</span>
+            R$ 29,90<span className="text-lg font-normal text-muted-foreground">/mês</span>
           </p>
         </div>
 
