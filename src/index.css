@@ -87,6 +87,16 @@
     to { width: 100% }
   }
 
+  @keyframes fadeUp {
+    0% { opacity: 0; transform: translateY(24px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes scrollAnim {
+    0% { opacity: 1; transform: translate(-50%, 0); }
+    100% { opacity: 0; transform: translate(-50%, 12px); }
+  }
+
   .text-gradient-gold {
     @apply bg-gradient-to-br from-gold-light via-gold to-gold-dark bg-clip-text text-transparent;
   }
