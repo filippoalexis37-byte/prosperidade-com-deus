@@ -48,12 +48,7 @@ const PromoSection = () => {
             <div>
               <div className="flex items-center gap-2 mb-8">
                 <Tag className="w-5 h-5 text-gold" />
-                <span className="text-gold font-bold uppercase tracking-wider text-sm">Cupom de Desconto</span>
-              </div>
-              
-              <div className="bg-gold/10 border-2 border-dashed border-gold/30 rounded-2xl p-6 text-center mb-10 group hover:border-gold/60 transition-colors">
-                <p className="text-gold-light text-xs font-bold uppercase tracking-widest mb-2">Use o Cupom</p>
-                <h3 className="text-4xl font-serif font-black text-gold tracking-widest group-hover:scale-110 transition-transform">OFF50</h3>
+                <span className="text-gold font-bold uppercase tracking-wider text-sm">O que está incluso</span>
               </div>
 
               <ul className="space-y-4 mb-8">
