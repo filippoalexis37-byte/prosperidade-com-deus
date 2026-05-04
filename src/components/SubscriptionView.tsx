@@ -78,13 +78,10 @@ const SubscriptionView: React.FC<SubscriptionViewProps> = ({ status, daysLeft })
           </div>
         </div>
 
-        <div className="bg-[#1A1720]/95 border border-white/[0.15] rounded-2xl p-[18px_20px] flex items-center gap-3.5 active:scale-[0.98] transition-transform cursor-pointer mb-4">
-          <span className="text-[28px] flex-shrink-0">🎁</span>
-          <div className="text-left">
-            <strong className="text-sm font-semibold text-[#F8EED8] block mb-0.5">Cupom de Desconto</strong>
-            <span className="text-xs text-[#F8EED8]/50">Use <strong className="text-gold">OFF50</strong> na primeira mensalidade</span>
-          </div>
-          <span className="ml-auto text-gold text-base">›</span>
+        <div className="text-center py-2.5 mb-2">
+          <p className="text-xs text-[#F8EED8]/50 leading-relaxed">
+            Cancele quando quiser direto pelo app, sem burocracia.
+          </p>
         </div>
 
         <div className="text-center py-2.5">
