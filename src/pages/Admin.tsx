@@ -69,6 +69,31 @@ const Admin = () => {
     );
   };
 
+  const togglePaid = async (userId: string, paid: boolean) => {
+    const updates: { has_paid: boolean; is_approved?: boolean } = { has_paid: paid };
+    if (paid) updates.is_approved = true;
+
+    const { error } = await supabase
+      .from("profiles")
+      .update(updates)
+      .eq("user_id", userId);
+
+    if (error) {
+      toast.error("Erro ao atualizar pagamento");
+      return;
+    }
+
+    toast.success(paid ? "Acesso pago liberado!" : "Acesso pago removido");
+    setUsers((prev) =>
+      prev.map((u) =>
+        u.user_id === userId
+          ? { ...u, has_paid: paid, is_approved: paid ? true : u.is_approved }
+          : u
+      )
+    );
+  };
+
+
   const filteredUsers = users.filter((u) => {
     if (filter === "pending") return !u.is_approved;
     if (filter === "approved") return u.is_approved;
