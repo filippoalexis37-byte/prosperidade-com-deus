@@ -78,7 +78,7 @@ const OfferSection = () => {
               </div>
               <div className="inline-block mt-6 px-6 py-2 bg-gold/10 border border-gold/30 rounded-full">
                 <span className="text-gold font-black uppercase tracking-tighter text-sm md:text-base">
-                  ⚠️ PAGAMENTO ÚNICO • SEM MENSALIDADES • ACESSO VITALÍCIO
+                  ⚡ ASSINATURA MENSAL • CANCELE QUANDO QUISER
                 </span>
               </div>
             </div>
@@ -87,7 +87,7 @@ const OfferSection = () => {
             <div className="max-w-md mx-auto text-left space-y-4 mb-12 bg-white/5 p-6 rounded-2xl border border-white/10">
               <p className="text-gold font-bold text-sm uppercase tracking-widest text-center mb-4">O que você leva hoje:</p>
               <div className="flex items-center gap-3 text-cream/90 text-sm">
-                <span className="text-gold text-lg">✓</span> <span>Acesso Vitalício ao App Completo</span>
+                <span className="text-gold text-lg">✓</span> <span>Acesso Completo ao App</span>
               </div>
               <div className="flex items-center gap-3 text-cream/90 text-sm">
                 <span className="text-gold text-lg">✓</span> <span>365 Dias de Devocionais Premium</span>
@@ -102,19 +102,6 @@ const OfferSection = () => {
                 🎁 TESTE POR 7 DIAS GRÁTIS - RISCO ZERO
               </div>
             </div>
-
-            <button
-              onClick={copyCoupon}
-              className="group inline-flex items-center gap-4 bg-gold/5 border border-dashed border-gold/40 rounded-2xl px-6 py-4 mb-12 hover:bg-gold/10 transition-colors"
-            >
-              <div className="text-left">
-                <div className="text-[10px] text-muted-foreground uppercase font-bold tracking-widest">Cupom Extra</div>
-                <div className="text-xl font-black text-gold tracking-[0.2em]">OFF50</div>
-              </div>
-              <div className={`text-[10px] uppercase font-bold tracking-widest ${couponText.includes('✓') ? 'text-gold' : 'text-gold/40'}`}>
-                {couponText}
-              </div>
-            </button>
 
             <a href="https://go.hotmart.com/I105094651R?dp=1" className="block">
               <Button className="w-full h-20 rounded-full bg-gradient-gold text-primary-foreground text-xl font-black shadow-[0_0_50px_rgba(201,169,110,0.5)] hover:scale-[1.02] transition-transform animate-pulse-subtle">
