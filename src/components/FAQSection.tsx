@@ -7,12 +7,8 @@ const faqs = [
     a: "Não. O programa foi criado para quem está começando e para quem já tem caminhada. O conteúdo é organizado de forma progressiva — você vai entendendo cada conceito no momento certo, sem jargões complicados.",
   },
   {
-    q: "Como funciona o cupom OFF50?",
-    a: "Ao clicar em \"Quero Transformar Minha Vida\", você será levado à página de checkout. No campo de cupom, insira o código OFF50 para aplicar o desconto adicional. O desconto é aplicado automaticamente no valor final.",
-  },
-  {
     q: "Por quanto tempo terei acesso?",
-    a: "O acesso é vitalício. Uma vez que você adquire o programa, ele é seu para sempre — incluindo todas as atualizações e novos conteúdos que forem adicionados sem custo extra.",
+    a: "Enquanto sua assinatura estiver ativa, você terá acesso completo a todos os devocionais, módulos e atualizações. Você pode cancelar quando quiser, sem multa nem burocracia.",
   },
   {
     q: "E se eu não gostar? Tenho garantia?",

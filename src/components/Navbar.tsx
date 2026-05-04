@@ -11,7 +11,7 @@ const Navbar = () => {
         <a href="/auth" className="text-cream/70 hover:text-gold text-xs md:text-sm font-bold uppercase tracking-widest transition-colors hidden sm:block">
           Entrar
         </a>
-        <a href="https://go.hotmart.com/E98949409P?dp=1">
+        <a href="https://go.hotmart.com/I105094651R?dp=1">
           <Button className="rounded-full bg-gradient-gold text-primary-foreground font-bold text-xs md:text-sm px-6 shadow-[0_0_20px_rgba(201,169,110,0.3)] hover:scale-105 transition-transform">
             Começar Agora
           </Button>

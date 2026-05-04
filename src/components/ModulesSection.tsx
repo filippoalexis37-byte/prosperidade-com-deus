@@ -85,10 +85,10 @@ const ModulesSection = () => {
           {/* Bonus Card */}
           <div className="group relative bg-gradient-gold rounded-3xl p-8 flex flex-col justify-center items-center text-center shadow-gold hover:scale-[1.03] transition-all duration-500">
             <h3 className="font-serif text-3xl font-bold text-primary-foreground mb-4 leading-tight">
-              Acesso Vitalício ao App
+              Acesso Completo ao App
             </h3>
             <p className="text-primary-foreground/80 font-medium mb-6 text-sm md:text-base">
-              Assine agora e garanta todas as atualizações futuras sem custo adicional.
+              Assine agora e tenha todos os módulos liberados, com novos conteúdos sempre que lançarmos.
             </p>
             <span className="bg-white/20 backdrop-blur-md text-white text-[10px] font-bold px-4 py-2 rounded-full uppercase tracking-widest">
               Bônus Exclusivo

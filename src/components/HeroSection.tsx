@@ -69,7 +69,7 @@ const HeroSection = () => {
       </p>
 
       <div className="flex flex-col sm:flex-row gap-4 justify-center opacity-0 animate-[fadeUp_1s_1.1s_forwards]">
-        <a href="https://go.hotmart.com/E98949409P?dp=1">
+        <a href="https://go.hotmart.com/I105094651R?dp=1">
           <Button size="lg" className="h-16 px-10 rounded-full bg-gradient-gold text-primary-foreground font-bold text-lg shadow-[0_0_40px_rgba(201,169,110,0.4)] hover:scale-105 transition-transform">
             ✦ Quero me Conectar com Deus
           </Button>
