@@ -16,7 +16,7 @@ const SubscriptionView: React.FC<SubscriptionViewProps> = ({ status, daysLeft })
         <h1 className="font-serif text-[22px] font-bold text-[#F8EED8] mb-2 relative z-10">Sua Assinatura</h1>
         <p className="text-[13px] text-[#F8EED8]/50 relative z-10 leading-relaxed max-w-[280px] mx-auto">
           {status === 'paid' 
-            ? 'Você tem acesso vitalício a toda a jornada espiritual.' 
+            ? 'Sua assinatura está ativa. Aproveite toda a jornada espiritual.' 
             : `Você está no período de teste. Restam ${daysLeft} dias de acesso.`}
         </p>
       </div>
