@@ -210,6 +210,27 @@ const Admin = () => {
                         Aprovar
                       </Button>
                     )}
+
+                    {/* Liberar acesso pago */}
+                    {user.has_paid ? (
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => togglePaid(user.user_id, false)}
+                        className="text-orange-400 border-orange-400/30"
+                      >
+                        Remover Pago
+                      </Button>
+                    ) : (
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => togglePaid(user.user_id, true)}
+                        className="text-green-400 border-green-400/30"
+                      >
+                        <DollarSign className="w-3 h-3 mr-1" /> Liberar Pago
+                      </Button>
+                    )}
                   </div>
                 </CardContent>
               </Card>
