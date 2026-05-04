@@ -3,7 +3,6 @@ import { Button } from "@/components/ui/button";
 
 const OfferSection = () => {
   const [timeLeft, setTimeLeft] = useState({ h: 23, m: 59, s: 59 });
-  const [couponText, setCouponText] = useState('Clique para copiar');
 
   useEffect(() => {
     const end = Date.now() + 23 * 3600 * 1000 + 59 * 60 * 1000;
@@ -20,13 +19,6 @@ const OfferSection = () => {
     const timer = setInterval(tick, 1000);
     return () => clearInterval(timer);
   }, []);
-
-  const copyCoupon = () => {
-    navigator.clipboard.writeText('OFF50').then(() => {
-      setCouponText('✓ Copiado!');
-      setTimeout(() => setCouponText('Clique para copiar'), 2500);
-    });
-  };
 
   const pad = (n: number) => String(n).padStart(2, '0');
 
