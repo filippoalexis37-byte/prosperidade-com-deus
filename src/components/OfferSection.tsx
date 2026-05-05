@@ -95,7 +95,7 @@ const OfferSection = () => {
               </div>
             </div>
 
-            <a href="https://go.hotmart.com/I105094651R?dp=1" className="block">
+            <a href="https://go.hotmart.com/I105094651R?dp=1" target="_blank" rel="noopener noreferrer" className="block">
               <Button className="w-full h-20 rounded-full bg-gradient-gold text-primary-foreground text-xl font-black shadow-[0_0_50px_rgba(201,169,110,0.5)] hover:scale-[1.02] transition-transform animate-pulse-subtle">
                 ✦ Quero Transformar Minha Vida Agora
               </Button>
