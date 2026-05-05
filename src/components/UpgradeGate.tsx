@@ -6,7 +6,7 @@ interface UpgradeGateProps {
   children: React.ReactNode;
 }
 
-const CHECKOUT_URL = "https://www.ggcheckout.com/checkout/v3/9Mi4R0FainnLnX9wzmRn";
+const CHECKOUT_URL = "https://go.hotmart.com/I105094651R?dp=1";
 
 const UpgradeGate = ({ children }: UpgradeGateProps) => {
   const { status } = useSubscription();
