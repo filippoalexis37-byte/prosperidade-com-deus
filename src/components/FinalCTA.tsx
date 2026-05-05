@@ -22,7 +22,7 @@ const FinalCTA = () => {
           não vive carente e não negocia seus valores.
         </p>
         
-        <a href="https://go.hotmart.com/I105094651R?dp=1">
+        <a href="https://go.hotmart.com/I105094651R?dp=1" target="_blank" rel="noopener noreferrer">
           <Button size="lg" className="h-16 px-12 rounded-full bg-gradient-gold text-primary-foreground font-bold text-xl shadow-[0_0_50px_rgba(201,169,110,0.5)] hover:scale-105 transition-transform">
             ✦ Começar Minha Transformação
           </Button>
