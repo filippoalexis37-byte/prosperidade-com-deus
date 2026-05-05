@@ -1,5 +1,7 @@
 // UPDATED AT: 2026-04-20 22:31:00 - FORCING SYNC
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from "react-router-dom";
+import { Shield } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
 import { useStreak } from "@/hooks/useStreak";
 import { useSubscription } from "@/hooks/useSubscription";
@@ -13,7 +15,8 @@ import PersistenceView from "@/components/PersistenceView";
 import SubscriptionView from "@/components/SubscriptionView";
 
 const Dashboard: React.FC = () => {
-  const { profile, isApproved, user } = useAuth();
+  const { profile, isApproved, user, isAdmin } = useAuth();
+  const navigate = useNavigate();
   const { currentStreak } = useStreak();
   const { status, daysLeft } = useSubscription();
   const [activeScreen, setActiveScreen] = useState<ScreenType>('home');
@@ -244,6 +247,17 @@ const Dashboard: React.FC = () => {
       <main className="h-full overflow-y-auto pb-[calc(80px+env(safe-area-inset-bottom,20px))] scrollbar-none">
         {renderActiveScreen()}
       </main>
+
+      {isAdmin && (
+        <button
+          onClick={() => navigate('/admin')}
+          className="fixed top-4 right-4 z-[210] flex items-center gap-1.5 px-3 py-2 rounded-full bg-gradient-to-br from-[#F2D47B] to-[#C9A455] text-[#09080A] text-[11px] font-bold uppercase tracking-wider shadow-[0_4px_20px_rgba(201,164,85,0.4)] active:scale-95 transition-transform"
+          aria-label="Painel do Administrador"
+        >
+          <Shield className="w-3.5 h-3.5" />
+          Admin
+        </button>
+      )}
 
       <AppBottomNav activeScreen={activeScreen} onScreenChange={setActiveScreen} />
 
