@@ -42,21 +42,23 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <AuthProvider>
-          <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/auth" element={<Auth />} />
-            <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
-            <Route path="/biblia" element={<ProtectedRoute><Bible /></ProtectedRoute>} />
-            <Route path="/devocional" element={<ProtectedRoute><Devotional /></ProtectedRoute>} />
-            <Route path="/modulos" element={<ProtectedRoute><Modules /></ProtectedRoute>} />
-            <Route path="/medalhas" element={<ProtectedRoute><Medals /></ProtectedRoute>} />
-            <Route path="/versiculo" element={<ProtectedRoute><DailyVerse /></ProtectedRoute>} />
-            <Route path="/planos" element={<ProtectedRoute><Plans /></ProtectedRoute>} />
-            <Route path="/planos/:planId" element={<ProtectedRoute><PlanDetail /></ProtectedRoute>} />
-            <Route path="/planos/:planId/dia/:dayNumber" element={<ProtectedRoute><PlanDay /></ProtectedRoute>} />
-            <Route path="/admin" element={<ProtectedRoute><Admin /></ProtectedRoute>} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
+          <Suspense fallback={<PageLoader />}>
+            <Routes>
+              <Route path="/" element={<Index />} />
+              <Route path="/auth" element={<Auth />} />
+              <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
+              <Route path="/biblia" element={<ProtectedRoute><Bible /></ProtectedRoute>} />
+              <Route path="/devocional" element={<ProtectedRoute><Devotional /></ProtectedRoute>} />
+              <Route path="/modulos" element={<ProtectedRoute><Modules /></ProtectedRoute>} />
+              <Route path="/medalhas" element={<ProtectedRoute><Medals /></ProtectedRoute>} />
+              <Route path="/versiculo" element={<ProtectedRoute><DailyVerse /></ProtectedRoute>} />
+              <Route path="/planos" element={<ProtectedRoute><Plans /></ProtectedRoute>} />
+              <Route path="/planos/:planId" element={<ProtectedRoute><PlanDetail /></ProtectedRoute>} />
+              <Route path="/planos/:planId/dia/:dayNumber" element={<ProtectedRoute><PlanDay /></ProtectedRoute>} />
+              <Route path="/admin" element={<ProtectedRoute><Admin /></ProtectedRoute>} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </Suspense>
         </AuthProvider>
       </BrowserRouter>
     </TooltipProvider>
