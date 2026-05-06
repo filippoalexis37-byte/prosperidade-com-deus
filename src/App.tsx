@@ -1,22 +1,30 @@
+import { lazy, Suspense } from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { AuthProvider, useAuth } from "@/contexts/AuthContext";
-import Index from "./pages/Index";
 import Auth from "./pages/Auth";
-import Dashboard from "./pages/Dashboard";
-import Bible from "./pages/Bible";
-import Devotional from "./pages/Devotional";
-import Modules from "./pages/Modules";
-import Medals from "./pages/Medals";
-import DailyVerse from "./pages/DailyVerse";
-import Plans from "./pages/Plans";
-import PlanDetail from "./pages/PlanDetail";
-import PlanDay from "./pages/PlanDay";
-import Admin from "./pages/Admin";
-import NotFound from "./pages/NotFound";
+
+const Index = lazy(() => import("./pages/Index"));
+const Dashboard = lazy(() => import("./pages/Dashboard"));
+const Bible = lazy(() => import("./pages/Bible"));
+const Devotional = lazy(() => import("./pages/Devotional"));
+const Modules = lazy(() => import("./pages/Modules"));
+const Medals = lazy(() => import("./pages/Medals"));
+const DailyVerse = lazy(() => import("./pages/DailyVerse"));
+const Plans = lazy(() => import("./pages/Plans"));
+const PlanDetail = lazy(() => import("./pages/PlanDetail"));
+const PlanDay = lazy(() => import("./pages/PlanDay"));
+const Admin = lazy(() => import("./pages/Admin"));
+const NotFound = lazy(() => import("./pages/NotFound"));
+
+const PageLoader = () => (
+  <div className="min-h-screen bg-background flex items-center justify-center">
+    <p className="text-gold animate-pulse font-serif text-xl">Carregando...</p>
+  </div>
+);
 
 const queryClient = new QueryClient();
 
