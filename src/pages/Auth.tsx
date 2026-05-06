@@ -61,8 +61,11 @@ const Auth = () => {
     <div className="min-h-screen bg-background flex items-center justify-center px-4">
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
-          <h1 className="font-serif text-3xl font-bold text-gradient-gold">Prosperidade com Deus</h1>
-          <p className="text-muted-foreground mt-2">Sua jornada de transformação começa aqui</p>
+          <p className="text-gold text-xs font-bold uppercase tracking-[0.4em] mb-3">✦ Conexão com Deus ✦</p>
+          <h1 className="font-serif text-4xl md:text-5xl font-light text-cream leading-tight">
+            Destrave sua <strong className="font-bold bg-gradient-gold bg-clip-text text-transparent">vida espiritual</strong>
+          </h1>
+          <p className="text-muted-foreground mt-4 text-sm italic">"Aproximai-vos de Deus e ele se aproximará de vós." — Tiago 4:8</p>
         </div>
 
         <Card className="border-border bg-card">
