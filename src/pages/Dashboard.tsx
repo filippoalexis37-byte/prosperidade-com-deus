@@ -203,6 +203,12 @@ const Dashboard: React.FC = () => {
           <div className="font-serif text-[13px] font-semibold text-[#F8EED8] mb-1">Meditação</div>
           <div className="text-[11px] text-[#F8EED8]/50 leading-relaxed">Silêncio e presença de Deus</div>
         </div>
+        <div className="bg-[#1A1720]/95 border border-white/[0.15] rounded-[18px] p-[18px_16px] cursor-pointer active:scale-[0.96] transition-all relative overflow-hidden col-span-2" onClick={() => navigate('/biblia')}>
+          <div className="absolute top-[-20px] right-[-20px] w-20 h-20 rounded-full bg-gold/10 blur-[20px] pointer-events-none" />
+          <span className="text-[28px] mb-2.5 block">📕</span>
+          <div className="font-serif text-[13px] font-semibold text-[#F8EED8] mb-1">Bíblia Sagrada</div>
+          <div className="text-[11px] text-[#F8EED8]/50 leading-relaxed">Leia todos os 66 livros — Antigo e Novo Testamento</div>
+        </div>
       </div>
 
       <div className="mx-5 mt-4 bg-gradient-to-br from-[#1C0A3A] to-[#0E0A22] border border-purpleL/40 rounded-[18px] p-[18px_20px] flex items-center gap-3.5 cursor-pointer active:scale-[0.98] transition-all" onClick={() => setActiveScreen('desert')}>
