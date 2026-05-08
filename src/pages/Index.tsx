@@ -14,7 +14,8 @@ import ExitIntentPopup from "@/components/ExitIntentPopup";
 import VerseOfDaySection from "@/components/VerseOfDaySection";
 import AppDemoSection from "@/components/AppDemoSection";
 import ModulesSection from "@/components/ModulesSection";
-import PainSolutionSection from "@/components/PainSolutionSection";
+import EmotionalSection from "@/components/EmotionalSection";
+import TransformationSection from "@/components/TransformationSection";
 
 const Index = () => {
   return (
@@ -24,9 +25,11 @@ const Index = () => {
       <ExitIntentPopup />
       
       <HeroSection />
-      
-      <PainSolutionSection />
-      
+
+      <EmotionalSection />
+
+      <TransformationSection />
+
       <PillarsSection />
       
       <VerseBreak 
