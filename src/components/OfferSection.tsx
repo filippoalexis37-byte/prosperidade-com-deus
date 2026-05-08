@@ -66,11 +66,11 @@ const OfferSection = () => {
             <div className="mb-12">
               <div className="text-lg text-white/30 line-through mb-1">De R$ 197,00 por apenas</div>
               <div className="font-serif text-7xl md:text-9xl font-bold bg-gradient-gold bg-clip-text text-transparent leading-none">
-                R$ 29,90
+                R$ 49,90
               </div>
               <div className="inline-block mt-6 px-6 py-2 bg-gold/10 border border-gold/30 rounded-full">
                 <span className="text-gold font-black uppercase tracking-tighter text-sm md:text-base">
-                  ⚡ ASSINATURA MENSAL • CANCELE QUANDO QUISER
+                  ⚡ ACESSO VITALÍCIO • PAGAMENTO ÚNICO
                 </span>
               </div>
             </div>
