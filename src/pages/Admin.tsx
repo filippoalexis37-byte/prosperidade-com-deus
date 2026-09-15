@@ -5,7 +5,18 @@ import AppLayout from "@/components/AppLayout";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Shield, UserCheck, UserX, Users, AlertTriangle, DollarSign } from "lucide-react";
+import { Shield, UserCheck, UserX, Users, AlertTriangle, DollarSign, Trash2 } from "lucide-react";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
 
@@ -93,6 +104,19 @@ const Admin = () => {
     );
   };
 
+  const deleteUser = async (userId: string) => {
+    const { data, error } = await supabase.functions.invoke("delete-user", {
+      body: { user_id: userId },
+    });
+
+    if (error || (data as { error?: string })?.error) {
+      toast.error((data as { error?: string })?.error || "Erro ao excluir usuário");
+      return;
+    }
+
+    toast.success("Usuário excluído com sucesso");
+    setUsers((prev) => prev.filter((u) => u.user_id !== userId));
+  };
 
   const filteredUsers = users.filter((u) => {
     if (filter === "pending") return !u.is_approved;
@@ -231,6 +255,37 @@ const Admin = () => {
                         <DollarSign className="w-3 h-3 mr-1" /> Liberar Pago
                       </Button>
                     )}
+
+                    {/* Excluir usuário */}
+                    <AlertDialog>
+                      <AlertDialogTrigger asChild>
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          className="text-destructive border-destructive/30"
+                        >
+                          <Trash2 className="w-3 h-3 mr-1" /> Excluir
+                        </Button>
+                      </AlertDialogTrigger>
+                      <AlertDialogContent>
+                        <AlertDialogHeader>
+                          <AlertDialogTitle>Excluir usuário?</AlertDialogTitle>
+                          <AlertDialogDescription>
+                            {user.email} será removido permanentemente, junto com todo o
+                            progresso. Esta ação não pode ser desfeita.
+                          </AlertDialogDescription>
+                        </AlertDialogHeader>
+                        <AlertDialogFooter>
+                          <AlertDialogCancel>Cancelar</AlertDialogCancel>
+                          <AlertDialogAction
+                            onClick={() => deleteUser(user.user_id)}
+                            className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+                          >
+                            Excluir
+                          </AlertDialogAction>
+                        </AlertDialogFooter>
+                      </AlertDialogContent>
+                    </AlertDialog>
                   </div>
                 </CardContent>
               </Card>
