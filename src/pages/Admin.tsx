@@ -104,6 +104,19 @@ const Admin = () => {
     );
   };
 
+  const deleteUser = async (userId: string) => {
+    const { data, error } = await supabase.functions.invoke("delete-user", {
+      body: { user_id: userId },
+    });
+
+    if (error || (data as { error?: string })?.error) {
+      toast.error((data as { error?: string })?.error || "Erro ao excluir usuário");
+      return;
+    }
+
+    toast.success("Usuário excluído com sucesso");
+    setUsers((prev) => prev.filter((u) => u.user_id !== userId));
+  };
 
   const filteredUsers = users.filter((u) => {
     if (filter === "pending") return !u.is_approved;
